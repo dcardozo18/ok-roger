@@ -17,7 +17,7 @@ export default function ReportsPage() {
         <div className="flex flex-col bg-muted/40 flex-1">
           <Header />
           <main className="flex-1 p-4 sm:px-6 sm:py-0 grid gap-4 md:gap-8">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
                 {reportStats.map((stat) => (
                     <StatCard key={stat.title} {...stat} />
                 ))}

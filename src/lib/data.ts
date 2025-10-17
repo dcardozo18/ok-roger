@@ -1,5 +1,6 @@
 
-import { DollarSign, ClipboardList, CheckCircle, Briefcase, User, Calendar, MessageSquare, PlusCircle, TrendingUp, Target, CalendarPlus, CalendarCog, CalendarX, ArrowRightLeft, CircleDollarSign, Users, Bell, Check } from 'lucide-react';
+
+import { DollarSign, ClipboardList, CheckCircle, Briefcase, User, Calendar, MessageSquare, PlusCircle, TrendingUp, Target, CalendarPlus, CalendarCog, CalendarX, ArrowRightLeft, CircleDollarSign, Users, Bell, Check, Clock, ShieldCheck } from 'lucide-react';
 import type { Icon as LucideIcon } from 'lucide-react';
 
 export type Stat = {
@@ -21,7 +22,14 @@ export const reportStats: Stat[] = [
     { title: "Booking Changes", value: "350", change: "+5.1%", icon: CalendarCog },
     { title: "Cancellations", value: "82", change: "-3.4%", icon: CalendarX },
     { title: "Transactions", value: "2.8K", change: "+21.9%", icon: ArrowRightLeft },
+    { title: "Spend Managed", value: "$450K", change: "+10%", icon: CircleDollarSign },
+    { title: "Employee Time Saved", value: "500h", change: "+8%", icon: Clock },
+    { title: "Check Ins", value: "1.5K", change: "+25%", icon: ShieldCheck },
+    { title: "Active Users", value: "5.2K", change: "+5%", icon: Users },
+    { title: "Trip Reminders", value: "3.1K", change: "+12%", icon: Bell },
+    { title: "Jobs Completed", value: "750", change: "+18%", icon: Check },
 ];
+
 
 export type User = {
   id: string;
