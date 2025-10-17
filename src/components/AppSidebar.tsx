@@ -54,7 +54,7 @@ const menuItems = [
 ];
 
 const helpAndSettingsItems = [
-    { label: "Help", icon: HelpCircle },
+    { label: "Help", icon: HelpCircle, href: "/help" },
     { label: "Settings", icon: Settings },
 ]
 
