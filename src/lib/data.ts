@@ -70,20 +70,6 @@ export const activeProjects: Project[] = [
   { id: "p4", name: "Project Delta", progress: 25 },
 ];
 
-export type Member = {
-  id: string;
-  name: string;
-  avatarUrl: string;
-  role: string;
-  avatarFallback: string;
-};
-
-export const teamMembers: Member[] = [
-  { id: "m1", name: "Eva Green", avatarUrl: "https://picsum.photos/seed/team1/40/40", role: "Top Performer", avatarFallback: "EG" },
-  { id: "m2", name: "Frank Miller", avatarUrl: "https://picsum.photos/seed/team2/40/40", role: "Rising Star", avatarFallback: "FM" },
-  { id: "m3", name: "Grace Lee", avatarUrl: "https://picsum.photos/seed/team3/40/40", role: "Consistent Achiever", avatarFallback: "GL" },
-];
-
 export type TaskStatus = "In Progress" | "Completed" | "Canceled";
 
 export type Task = {

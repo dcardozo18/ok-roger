@@ -5,9 +5,8 @@ import { Header } from "@/components/dashboard/Header";
 import { SalesChart } from "@/components/dashboard/SalesChart";
 import { StatCard } from "@/components/dashboard/StatCard";
 import { TaskDistributionChart } from "@/components/dashboard/TaskDistributionChart";
-import { TeamMembers } from "@/components/dashboard/TeamMembers";
 import { SidebarInset } from "@/components/ui/sidebar";
-import { monthlySales, reportStats, taskDistribution, teamMembers } from "@/lib/data";
+import { monthlySales, reportStats, taskDistribution } from "@/lib/data";
 
 export default function ReportsPage() {
   return (
@@ -30,11 +29,6 @@ export default function ReportsPage() {
                     <TaskDistributionChart data={taskDistribution} />
                 </div>
             </div>
-             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-                 <div className="lg:col-span-2">
-                    <TeamMembers members={teamMembers} />
-                 </div>
-             </div>
           </main>
         </div>
       </SidebarInset>
