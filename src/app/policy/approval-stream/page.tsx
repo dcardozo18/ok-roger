@@ -43,7 +43,7 @@ export default function ApprovalStreamPage() {
                     <CardHeader>
                         <CardTitle>Approval Stream</CardTitle>
                         <CardDescription>
-                            Approval Stream allows you to receive real time notifications for travel approvals. This visibility helps streamline your workflow and ensures timely responses.
+                            Approval Stream allows your department head or executives to receive notifications when travel gets approved. Use this when you'd like line managers to approve travel, but you'd like someone central to have visibility and company wide oversight.
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
