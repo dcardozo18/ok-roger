@@ -3,13 +3,12 @@
 
 import * as React from "react"
 import { Calendar } from "@/components/ui/calendar"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import type { GroupEvent } from "@/lib/data"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button"
-import { isSameDay } from "date-fns"
 
 interface GroupEventsCalendarProps {
   events: GroupEvent[];
@@ -80,17 +79,20 @@ export function GroupEventsCalendar({ events }: GroupEventsCalendarProps) {
 
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Group Events</CardTitle>
-        <CardDescription>An overview of upcoming group events.</CardDescription>
-      </CardHeader>
-      <CardContent className="flex items-center justify-center">
+    <Card className="h-full">
+      <CardContent className="flex items-center justify-center h-full">
         <Calendar
           mode="single"
           selected={date}
           onSelect={setDate}
           className="p-0"
+          classNames={{
+            months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
+            month: "space-y-4 w-full",
+            table: "w-full border-collapse space-y-1",
+            row: "flex w-full mt-2",
+            cell: "flex-1 h-20 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
+          }}
           components={{
             Day: DayWithEvents,
           }}
