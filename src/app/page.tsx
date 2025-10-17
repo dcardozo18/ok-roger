@@ -14,19 +14,19 @@ export default function DashboardPage() {
       <SidebarInset>
         <div className="flex flex-col bg-muted/40">
             <Header />
-            <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
-              <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-3">
-                <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-2 lg:col-span-3 xl:grid-cols-4">
+            <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                <div className="md:col-span-2">
+                  <SalesChart data={monthlySales} />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
                   {stats.map((stat) => (
                     <StatCard key={stat.title} {...stat} />
                   ))}
                 </div>
-                <div className="grid grid-cols-1 gap-4 lg:col-span-3">
-                    <SalesChart data={monthlySales} />
-                </div>
-                <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-3">
-                  <ActivityStream activities={activityStream} />
-                </div>
+              </div>
+              <div className="grid auto-rows-max items-start gap-4 md:gap-8">
+                <ActivityStream activities={activityStream} />
               </div>
             </main>
         </div>
