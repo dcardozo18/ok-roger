@@ -1,10 +1,9 @@
 import { StatCard } from "@/components/dashboard/StatCard";
 import { SalesChart } from "@/components/dashboard/SalesChart";
 import { TeamMembers } from "@/components/dashboard/TeamMembers";
-import { TaskDistributionChart } from "@/components/dashboard/TaskDistributionChart";
 import { GroupEventsCalendar } from "@/components/dashboard/GroupEventsCalendar";
 import { ActivityStream } from "@/components/dashboard/ActivityStream";
-import { stats, monthlySales, teamMembers, groupEvents, activityStream, taskDistribution } from "@/lib/data";
+import { stats, monthlySales, teamMembers, groupEvents, activityStream } from "@/lib/data";
 import { Header } from "@/components/dashboard/Header";
 import { AppSidebar } from "@/components/AppSidebar";
 import { SidebarInset } from "@/components/ui/sidebar";
@@ -33,7 +32,6 @@ export default function DashboardPage() {
                   </div>
                   <div className="xl:col-span-2 flex flex-col gap-4">
                     <TeamMembers members={teamMembers} />
-                    <TaskDistributionChart data={taskDistribution} />
                   </div>
                 </div>
                  <div className="lg:col-span-4">
