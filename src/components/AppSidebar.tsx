@@ -25,13 +25,15 @@ import {
   HelpCircle,
   Settings,
   ChevronDown,
-  Dot
+  Dot,
+  Home
 } from "lucide-react"
 import Image from "next/image"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { cn } from "@/lib/utils"
 
 const menuItems = [
+  { label: "Dashboard", icon: Home, href: "/" },
   { label: "Users", icon: Users, href: "/users" },
   { label: "Directory", icon: BookUser },
   { label: "Platforms", icon: Layers },
@@ -68,7 +70,7 @@ function MenuItem({ item }: { item: {label: string, icon: React.ElementType, hre
 
   return (
     <Collapsible>
-      <SidebarMenuItem className="border-b border-sidebar-border">
+      <SidebarMenuItem>
          {item.href ? <Link href={item.href}>{menuItemContent}</Link> : menuItemContent}
       </SidebarMenuItem>
     </Collapsible>
@@ -123,7 +125,7 @@ export function AppSidebar() {
             </div>
             
             <SidebarGroup>
-                <SidebarMenu className="gap-2">
+                <SidebarMenu>
                 {menuItems.map((item) => (
                     <MenuItem key={item.label} item={item} />
                 ))}
