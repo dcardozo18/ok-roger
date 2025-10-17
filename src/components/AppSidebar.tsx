@@ -47,7 +47,7 @@ const menuItems = [
     icon: CreditCard, 
     href: "/billing",
     subItems: [
-        { label: "Payments", href: "/billing" },
+        { label: "Payments", href: "/billing/payments" },
         { label: "Subscriptions", href: "/billing" },
     ] 
   },
@@ -62,7 +62,7 @@ function MenuItem({ item, isActive }: { item: {label: string, icon: React.Elemen
   const hasSubItems = item.subItems && item.subItems.length > 0;
   const pathname = usePathname();
 
-  const isSubItemActive = hasSubItems && item.subItems!.some(sub => pathname === sub.href);
+  const isSubItemActive = hasSubItems && item.subItems!.some(sub => pathname.startsWith(sub.href!));
 
   const menuItemContent = (
     <SidebarMenuButton isActive={isActive || isSubItemActive} className="justify-between">
