@@ -25,13 +25,8 @@ export default function DashboardPage() {
                     <StatCard key={stat.title} {...stat} />
                   ))}
                 </div>
-                <div className="grid grid-cols-1 gap-4 lg:col-span-3 lg:grid-cols-2 xl:grid-cols-3">
-                  <div className="xl:col-span-2">
-                    <SalesChart data={monthlySales} />
-                  </div>
-                  <div>
-                    <ActiveProjects projects={activeProjects} />
-                  </div>
+                <div className="lg:col-span-3">
+                  <SalesChart data={monthlySales} />
                 </div>
                 <div className="grid grid-cols-1 gap-4 lg:col-span-3 lg:grid-cols-2">
                   <GroupEventsCalendar events={groupEvents} />

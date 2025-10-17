@@ -1,6 +1,6 @@
 "use client"
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
 import {
   Card,
   CardContent,
@@ -42,6 +42,12 @@ export function SalesChart({ data }: SalesChartProps) {
               tickLine={false}
               tickMargin={10}
               axisLine={false}
+            />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tickMargin={10}
+              tickFormatter={(value) => `$${value / 1000}K`}
             />
             <ChartTooltip content={<ChartTooltipContent />} />
             <Bar dataKey="sales" fill="var(--color-sales)" radius={4} />
