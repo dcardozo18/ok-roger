@@ -2,8 +2,8 @@
 import Link from "next/link"
 import Image from "next/image"
 import {
-  Home,
-  Package2,
+  Bell,
+  Mail,
   Search,
 } from "lucide-react"
 import { SidebarTrigger } from "@/components/ui/sidebar"
@@ -26,11 +26,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+    <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6 mt-4">
       <SidebarTrigger className="sm:hidden" />
       <Breadcrumb className="hidden md:flex">
         <BreadcrumbList>
@@ -53,6 +52,14 @@ export function Header() {
           className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
         />
       </div>
+      <Button variant="ghost" size="icon" className="rounded-full">
+        <Bell className="h-5 w-5" />
+        <span className="sr-only">Notifications</span>
+      </Button>
+      <Button variant="ghost" size="icon" className="rounded-full">
+        <Mail className="h-5 w-5" />
+        <span className="sr-only">Messages</span>
+      </Button>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
