@@ -48,9 +48,8 @@ import { cn } from "@/lib/utils";
 import { NewUserForm } from "./NewUserForm";
 
 const statusColors: Record<User["status"], string> = {
-  Active: "bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300",
-  Inactive: "bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300",
-  Pending: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/50 dark:text-yellow-300",
+  Invited: "bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300",
+  "Not invited": "bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300",
 };
 
 
@@ -96,11 +95,14 @@ export const columns: ColumnDef<User>[] = [
                 </Avatar>
                 <div>
                     <div className="font-medium">{user.name}</div>
-                    <div className="text-sm text-muted-foreground">{user.email}</div>
                 </div>
             </div>
         )
     }
+  },
+  {
+    accessorKey: "email",
+    header: "Email",
   },
   {
     accessorKey: "role",
