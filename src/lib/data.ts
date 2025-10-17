@@ -130,10 +130,3 @@ export type GroupEvent = {
   time: string;
   tag: "Team" | "Product" | "Company";
 };
-
-export const groupEvents: GroupEvent[] = [
-    { id: "e1", title: "Weekly Sync", date: new Date(new Date().setDate(new Date().getDate() + 2)).toISOString(), time: "10:00 AM", tag: "Team" },
-    { id: "e2", title: "Product Sprint Review", date: new Date(new Date().setDate(new Date().getDate() + 4)).toISOString(), time: "2:00 PM", tag: "Product" },
-    { id: "e3", title: "Company All-Hands", date: new Date(new Date().setDate(new Date().getDate() + 7)).toISOString(), time: "11:00 AM", tag: "Company" },
-    { id: "e4", title: "Design Critique", date: new Date(new Date().setDate(new Date().getDate() + 1)).toISOString(), time: "1:00 PM", tag: "Team" },
-];

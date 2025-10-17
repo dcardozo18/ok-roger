@@ -1,11 +1,10 @@
 import { StatCard } from "@/components/dashboard/StatCard";
 import { SalesChart } from "@/components/dashboard/SalesChart";
 import { ActivityStream } from "@/components/dashboard/ActivityStream";
-import { stats, monthlySales, activityStream, groupEvents } from "@/lib/data";
+import { stats, monthlySales, activityStream } from "@/lib/data";
 import { Header } from "@/components/dashboard/Header";
 import { AppSidebar } from "@/components/AppSidebar";
 import { SidebarInset } from "@/components/ui/sidebar";
-import { GroupEventsCalendar } from "@/components/dashboard/GroupEventsCalendar";
 
 
 export default function DashboardPage() {
@@ -24,9 +23,6 @@ export default function DashboardPage() {
                 </div>
                 <div className="grid grid-cols-1 gap-4 lg:col-span-3">
                     <SalesChart data={monthlySales} />
-                </div>
-                <div className="grid grid-cols-1 gap-4 lg:col-span-3">
-                  <GroupEventsCalendar events={groupEvents} />
                 </div>
                 <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-3">
                   <ActivityStream activities={activityStream} />
