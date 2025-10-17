@@ -130,7 +130,11 @@ export function CityTiersTable({ initialCityTiers, allCities }: CityTiersTablePr
       />
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-end">
+          <div className="flex items-center justify-between">
+              <div>
+                <CardTitle>City Tiers</CardTitle>
+                <CardDescription>Manage city tiers for your travel policies.</CardDescription>
+              </div>
               <Button onClick={() => setIsNewCityTierDialogOpen(true)}>
                   <PlusCircle className="mr-2 h-4 w-4" />
                   New City Tier
