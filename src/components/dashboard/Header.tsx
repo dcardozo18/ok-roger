@@ -1,3 +1,4 @@
+
 "use client"
 import Link from "next/link"
 import Image from "next/image"
@@ -60,32 +61,6 @@ export function Header() {
         <Mail className="h-5 w-5" />
         <span className="sr-only">Messages</span>
       </Button>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="outline"
-            size="icon"
-            className="overflow-hidden rounded-full"
-          >
-            <Image
-              src="https://picsum.photos/seed/mainuser/36/36"
-              width={36}
-              height={36}
-              alt="Avatar"
-              className="overflow-hidden rounded-full"
-              data-ai-hint="person portrait"
-            />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Settings</DropdownMenuItem>
-          <DropdownMenuItem>Support</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Logout</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
     </header>
   )
 }
