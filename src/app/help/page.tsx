@@ -90,7 +90,7 @@ export default function HelpPage() {
         <div className="flex flex-col bg-muted/40 flex-1">
           <Header />
           <main className="flex-1 p-4 sm:px-6 sm:py-0">
-            <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
               {/* FAQ Card */}
               <Card>
                 <CardHeader className="flex-row items-start gap-4">
@@ -126,94 +126,96 @@ export default function HelpPage() {
                 </CardContent>
               </Card>
 
-              {/* Ask a Question Card */}
-              <Card>
-                <CardHeader className="flex-row items-start gap-4">
-                  <MessageSquare className="h-8 w-8 text-primary" />
-                  <div>
-                    <CardTitle>Ask a question</CardTitle>
-                    <CardDescription>
-                      Can't find the answer? Contact our support team.
-                    </CardDescription>
-                  </div>
-                </CardHeader>
-                <Form {...supportForm}>
-                  <form onSubmit={supportForm.handleSubmit(onSupportSubmit)}>
-                    <CardContent className="space-y-4">
-                      <FormField
-                        control={supportForm.control}
-                        name="subject"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Subject</FormLabel>
-                            <FormControl>
-                              <Input placeholder="e.g., Billing issue" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={supportForm.control}
-                        name="message"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Message</FormLabel>
-                            <FormControl>
-                              <Textarea
-                                placeholder="Please describe your issue in detail..."
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </CardContent>
-                    <CardFooter>
-                      <Button type="submit" className="w-full">Send Message</Button>
-                    </CardFooter>
-                  </form>
-                </Form>
-              </Card>
+              <div className="space-y-6">
+                {/* Ask a Question Card */}
+                <Card>
+                  <CardHeader className="flex-row items-start gap-4">
+                    <MessageSquare className="h-8 w-8 text-primary" />
+                    <div>
+                      <CardTitle>Ask a question</CardTitle>
+                      <CardDescription>
+                        Can't find the answer? Contact our support team.
+                      </CardDescription>
+                    </div>
+                  </CardHeader>
+                  <Form {...supportForm}>
+                    <form onSubmit={supportForm.handleSubmit(onSupportSubmit)}>
+                      <CardContent className="space-y-4">
+                        <FormField
+                          control={supportForm.control}
+                          name="subject"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Subject</FormLabel>
+                              <FormControl>
+                                <Input placeholder="e.g., Billing issue" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={supportForm.control}
+                          name="message"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Message</FormLabel>
+                              <FormControl>
+                                <Textarea
+                                  placeholder="Please describe your issue in detail..."
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </CardContent>
+                      <CardFooter>
+                        <Button type="submit" className="w-full">Send Message</Button>
+                      </CardFooter>
+                    </form>
+                  </Form>
+                </Card>
 
-              {/* Suggest a Feature Card */}
-              <Card>
-                <CardHeader className="flex-row items-start gap-4">
-                  <Lightbulb className="h-8 w-8 text-primary" />
-                  <div>
-                    <CardTitle>Suggest a feature</CardTitle>
-                    <CardDescription>
-                      Have an idea? We'd love to hear from you.
-                    </CardDescription>
-                  </div>
-                </CardHeader>
-                 <Form {...suggestionForm}>
-                  <form onSubmit={suggestionForm.handleSubmit(onSuggestionSubmit)}>
-                    <CardContent>
-                      <FormField
-                        control={suggestionForm.control}
-                        name="suggestion"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Your Suggestion</FormLabel>
-                            <FormControl>
-                              <Textarea
-                                placeholder="I think it would be great if..."
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </CardContent>
-                    <CardFooter>
-                      <Button type="submit" className="w-full">Submit Suggestion</Button>
-                    </CardFooter>
-                  </form>
-                </Form>
-              </Card>
+                {/* Suggest a Feature Card */}
+                <Card>
+                  <CardHeader className="flex-row items-start gap-4">
+                    <Lightbulb className="h-8 w-8 text-primary" />
+                    <div>
+                      <CardTitle>Suggest a feature</CardTitle>
+                      <CardDescription>
+                        Have an idea? We'd love to hear from you.
+                      </CardDescription>
+                    </div>
+                  </CardHeader>
+                   <Form {...suggestionForm}>
+                    <form onSubmit={suggestionForm.handleSubmit(onSuggestionSubmit)}>
+                      <CardContent>
+                        <FormField
+                          control={suggestionForm.control}
+                          name="suggestion"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Your Suggestion</FormLabel>
+                              <FormControl>
+                                <Textarea
+                                  placeholder="I think it would be great if..."
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </CardContent>
+                      <CardFooter>
+                        <Button type="submit" className="w-full">Submit Suggestion</Button>
+                      </CardFooter>
+                    </form>
+                  </Form>
+                </Card>
+              </div>
             </div>
           </main>
         </div>
