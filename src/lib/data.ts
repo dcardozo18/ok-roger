@@ -119,10 +119,9 @@ export type TaskDistribution = {
 };
 
 export const taskDistribution: TaskDistribution[] = [
-  { department: "Calls", tasks: 120, fill: "var(--color-design)" },
-  { department: "Emails", tasks: 250, fill: "var(--color-development)" },
-  { department: "Meetings", tasks: 80, fill: "var(--color-marketing)" },
-  { department: "Deals Closed", tasks: 50, fill: "var(--color-qa)" },
+  { department: "Hotels", tasks: 186, fill: "var(--color-Hotels)" },
+  { department: "Flights", tasks: 124, fill: "var(--color-Flights)" },
+  { department: "Car rental", tasks: 98, fill: "var(--color-Car rental)" },
 ];
 
 export type SalesData = {

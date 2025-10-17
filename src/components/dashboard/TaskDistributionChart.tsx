@@ -2,7 +2,7 @@
 "use client";
 
 import * as React from "react";
-import { Pie, PieChart, Sector } from "recharts";
+import { Pie, PieChart } from "recharts";
 import {
   Card,
   CardContent,
@@ -28,21 +28,17 @@ const chartConfig = {
   tasks: {
     label: "Tasks",
   },
-  calls: {
-    label: "Calls",
+  Hotels: {
+    label: "Hotels",
     color: "hsl(var(--chart-1))",
   },
-  emails: {
-    label: "Emails",
+  Flights: {
+    label: "Flights",
     color: "hsl(var(--chart-2))",
   },
-  meetings: {
-    label: "Meetings",
+  "Car rental": {
+    label: "Car rental",
     color: "hsl(var(--chart-3))",
-  },
-  deals: {
-    label: "Deals Closed",
-    color: "hsl(var(--chart-4))",
   },
 } satisfies ChartConfig;
 
