@@ -34,8 +34,8 @@ export function GroupEventsCalendar({ events }: GroupEventsCalendarProps) {
         <CardTitle>Group Events</CardTitle>
         <CardDescription>An overview of upcoming group events.</CardDescription>
       </CardHeader>
-      <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
+      <CardContent className="flex flex-col gap-6">
+        <div className="flex justify-center">
           <Calendar
             mode="single"
             selected={date}
