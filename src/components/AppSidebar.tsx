@@ -37,7 +37,19 @@ const menuItems = [
   { label: "Dashboard", icon: Home, href: "/" },
   { label: "Users", icon: Users, href: "/users" },
   { label: "Platforms", icon: Layers, href: "/platforms" },
-  { label: "Policy", icon: Shield },
+  { 
+    label: "Policy", 
+    icon: Shield,
+    subItems: [
+        { label: "Rules", href: "/policy/rules" },
+        { label: "Approvers", href: "/policy/approvers" },
+        { label: "Global Approvers", href: "/policy/global-approvers" },
+        { label: "Excluded Users", href: "/policy/excluded-users" },
+        { label: "City Tiers", href: "/policy/city-tiers" },
+        { label: "Travel Stream", href: "/policy/travel-stream" },
+        { label: "Approval Stream", href: "/policy/approval-stream" },
+    ]
+  },
   { label: "Reports", icon: BarChart2, href: "/reports" },
   { label: "Group Events", icon: CalendarDays },
   { label: "Map", icon: Map, href: "/map" },
