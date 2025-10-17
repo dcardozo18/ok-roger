@@ -1,8 +1,10 @@
 
+"use client";
+
 import { AppSidebar } from "@/components/AppSidebar";
 import { Header } from "@/components/dashboard/Header";
 import { PlatformCard } from "@/components/platforms/PlatformCard";
-import { GoogleLogo, MsTeamsLogo, SlackLogo } from "@/components/platforms/PlatformLogos";
+import { GoogleSheetsLogo, MsTeamsLogo, SlackLogo } from "@/components/platforms/PlatformLogos";
 import { SidebarInset } from "@/components/ui/sidebar";
 
 const platforms = [
@@ -18,8 +20,8 @@ const platforms = [
     status: "Inactive" as const,
   },
   {
-    name: "Google",
-    logo: <GoogleLogo />,
+    name: "Google Sheets",
+    logo: <GoogleSheetsLogo />,
     status: "Inactive" as const,
   },
 ];
