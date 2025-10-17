@@ -11,6 +11,8 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarGroup,
+  SidebarMenuSub,
+  SidebarMenuSubItem
 } from "@/components/ui/sidebar"
 import {
   Users,
@@ -40,7 +42,15 @@ const menuItems = [
   { label: "Reports", icon: BarChart2 },
   { label: "Group Events", icon: CalendarDays },
   { label: "Map", icon: Map, href: "/map" },
-  { label: "Billing", icon: CreditCard, href: "/billing" },
+  { 
+    label: "Billing", 
+    icon: CreditCard, 
+    href: "/billing",
+    subItems: [
+        { label: "Payments", href: "/billing" },
+        { label: "Subscriptions", href: "/billing" },
+    ] 
+  },
 ];
 
 const helpAndSettingsItems = [
@@ -66,10 +76,12 @@ function MenuItem({ item, isActive }: { item: {label: string, icon: React.Elemen
     </SidebarMenuButton>
   );
 
+  const mainLink = item.href ? <Link href={item.href}>{menuItemContent}</Link> : <CollapsibleTrigger className="w-full">{menuItemContent}</CollapsibleTrigger>
+
   return (
     <Collapsible>
       <SidebarMenuItem>
-         {item.href ? <Link href={item.href}>{menuItemContent}</Link> : <CollapsibleTrigger className="w-full">{menuItemContent}</CollapsibleTrigger>}
+         {hasSubItems ? <CollapsibleTrigger className="w-full">{menuItemContent}</CollapsibleTrigger> : (item.href ? <Link href={item.href}>{menuItemContent}</Link> : menuItemContent) }
          {hasSubItems && (
             <CollapsibleContent>
               <SidebarMenuSub>
