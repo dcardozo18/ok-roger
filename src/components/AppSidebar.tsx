@@ -51,7 +51,7 @@ function MenuItem({ item }: { item: any }) {
 
   return (
     <Collapsible>
-      <SidebarMenuItem>
+      <SidebarMenuItem className="border-b border-sidebar-border">
         <SidebarMenuButton className="justify-between">
           <div className="flex items-center gap-2">
             <item.icon size={18} />
@@ -117,7 +117,7 @@ export function AppSidebar() {
             </div>
             
             <SidebarGroup>
-                <SidebarMenu>
+                <SidebarMenu className="gap-2">
                 {menuItems.map((item) => (
                     <MenuItem key={item.label} item={item} />
                 ))}
