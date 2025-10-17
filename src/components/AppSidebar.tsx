@@ -27,7 +27,6 @@ import {
   HelpCircle,
   Settings,
   ChevronDown,
-  Dot,
   Home
 } from "lucide-react"
 import Image from "next/image"
@@ -99,7 +98,6 @@ function MenuItem({ item, isActive }: { item: {label: string, icon: React.Elemen
                     <SidebarMenuSubItem key={subItem.label}>
                         <Link href={subItem.href!}>
                             <SidebarMenuSubButton isActive={pathname === subItem.href}>
-                                <Dot size={18} />
                                 <span>{subItem.label}</span>
                             </SidebarMenuSubButton>
                         </Link>
