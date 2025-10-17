@@ -44,15 +44,15 @@ const chartConfig = {
 
 export function TaskDistributionChart({ data }: TaskDistributionChartProps) {
   return (
-    <Card>
+    <Card className="flex flex-col h-full">
       <CardHeader>
         <CardTitle>Sales Activity</CardTitle>
         <CardDescription>Distribution of sales activities.</CardDescription>
       </CardHeader>
-      <CardContent className="flex justify-center">
+      <CardContent className="flex-1 flex justify-center items-center pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square h-[250px]"
+          className="mx-auto aspect-square w-full max-w-[300px]"
         >
           <PieChart>
             <ChartTooltip
@@ -65,10 +65,11 @@ export function TaskDistributionChart({ data }: TaskDistributionChartProps) {
               nameKey="department"
               innerRadius={60}
               strokeWidth={5}
+              outerRadius={100}
             />
             <ChartLegend
               content={<ChartLegendContent nameKey="department" />}
-              className="-mt-4 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center"
+              className="flex-wrap gap-2 [&>*]:basis-1/3 [&>*]:justify-center"
             />
           </PieChart>
         </ChartContainer>
