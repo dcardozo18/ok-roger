@@ -7,6 +7,7 @@ import { SidebarInset } from "@/components/ui/sidebar";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Switch } from "@/components/ui/switch";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Plus } from "lucide-react";
 
 const creditCards = [
     {
@@ -45,7 +46,10 @@ export default function PaymentsPage() {
                     <CardTitle>Credit Cards</CardTitle>
                     <CardDescription>Manage your saved payment methods.</CardDescription>
                   </div>
-                  <Button>Add Credit Card</Button>
+                  <Button>
+                    <Plus className="mr-2 h-4 w-4" />
+                    Add Credit Card
+                  </Button>
                 </CardHeader>
                 <CardContent>
                     <Table>
