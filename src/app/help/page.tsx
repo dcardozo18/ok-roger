@@ -122,6 +122,18 @@ export default function HelpPage() {
                         Yes, most tables in the application have an "Export" button that allows you to download your data.
                       </AccordionContent>
                     </AccordionItem>
+                    <AccordionItem value="item-4">
+                      <AccordionTrigger>How do I add a new user?</AccordionTrigger>
+                      <AccordionContent>
+                        You can add a new user from the "Users" page. Click on the "New User" button and fill out the required information.
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-5">
+                      <AccordionTrigger>Where can I see my team's activity?</AccordionTrigger>
+                      <AccordionContent>
+                        The main dashboard provides an "Activity Stream" that shows recent activities from your sales team.
+                      </AccordionContent>
+                    </AccordionItem>
                   </Accordion>
                 </CardContent>
               </Card>
