@@ -27,11 +27,19 @@ import {
   HelpCircle,
   Settings,
   ChevronDown,
-  Home
+  Home,
+  LogOut,
+  PlusCircle,
+  User,
+  Building,
+  ChevronsUpDown
 } from "lucide-react"
 import Image from "next/image"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { cn } from "@/lib/utils"
+import { Separator } from "./ui/separator";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { Button } from "./ui/button";
 
 const menuItems = [
   { label: "Dashboard", icon: Home, href: "/" },
@@ -74,54 +82,61 @@ function MenuItem({ item, isActive }: { item: {label: string, icon: React.Elemen
   const pathname = usePathname();
   
   const isSubItemActive = hasSubItems && item.subItems!.some(sub => pathname.startsWith(sub.href!));
-
-  if (hasSubItems) {
-    return (
-      <Collapsible defaultOpen={true}>
-        <SidebarMenuItem>
-          <CollapsibleTrigger asChild>
-            <SidebarMenuButton isActive={isActive || isSubItemActive} className="justify-between">
-              <div className="flex items-center gap-2">
-                <item.icon size={18} />
-                <span>{item.label}</span>
-              </div>
-              <ChevronDown
-                size={16}
-                className={cn("transition-transform", "[data-state=open]:-rotate-180")}
-              />
-            </SidebarMenuButton>
-          </CollapsibleTrigger>
-        </SidebarMenuItem>
-        <CollapsibleContent>
-            <SidebarMenuSub>
-                {item.subItems!.map((subItem) => (
-                    <SidebarMenuSubItem key={subItem.label}>
-                        <Link href={subItem.href!}>
-                            <SidebarMenuSubButton isActive={pathname === subItem.href}>
-                                <span>{subItem.label}</span>
-                            </SidebarMenuSubButton>
-                        </Link>
-                    </SidebarMenuSubItem>
-                ))}
-            </SidebarMenuSub>
-        </CollapsibleContent>
-      </Collapsible>
-    )
-  }
-
-  const menuItemContent = (
-    <SidebarMenuButton isActive={isActive || isSubItemActive}>
-      <div className="flex items-center gap-2">
-        <item.icon size={18} />
-        <span>{item.label}</span>
-      </div>
-    </SidebarMenuButton>
-  );
+  const [isOpen, setIsOpen] = React.useState(isSubItemActive);
 
   return (
-    <SidebarMenuItem>
-        {item.href ? <Link href={item.href}>{menuItemContent}</Link> : <div className="cursor-not-allowed">{menuItemContent}</div>}
-    </SidebarMenuItem>
+      <Collapsible open={isOpen} onOpenChange={setIsOpen} asChild>
+        <SidebarMenuItem>
+            {hasSubItems ? (
+                 <>
+                    <CollapsibleTrigger asChild>
+                        <SidebarMenuButton isActive={isActive || isSubItemActive} className="justify-between">
+                        <div className="flex items-center gap-2">
+                            <item.icon size={18} />
+                            <span>{item.label}</span>
+                        </div>
+                        <ChevronDown
+                            size={16}
+                            className={cn("transition-transform", "[data-state=open]:-rotate-180")}
+                        />
+                        </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                        <SidebarMenuSub>
+                            {item.subItems!.map((subItem) => (
+                                <SidebarMenuSubItem key={subItem.label}>
+                                    <Link href={subItem.href!}>
+                                        <SidebarMenuSubButton isActive={pathname === subItem.href}>
+                                            <span>{subItem.label}</span>
+                                        </SidebarMenuSubButton>
+                                    </Link>
+                                </SidebarMenuSubItem>
+                            ))}
+                        </SidebarMenuSub>
+                    </CollapsibleContent>
+                </>
+            ) : (
+                item.href ? 
+                <Link href={item.href}>
+                    <SidebarMenuButton isActive={isActive}>
+                        <div className="flex items-center gap-2">
+                            <item.icon size={18} />
+                            <span>{item.label}</span>
+                        </div>
+                    </SidebarMenuButton>
+                </Link> 
+                : 
+                <div className="cursor-not-allowed">
+                     <SidebarMenuButton isActive={isActive}>
+                        <div className="flex items-center gap-2">
+                            <item.icon size={18} />
+                            <span>{item.label}</span>
+                        </div>
+                    </SidebarMenuButton>
+                </div>
+            )}
+        </SidebarMenuItem>
+      </Collapsible>
   )
 }
 
@@ -142,34 +157,58 @@ export function AppSidebar() {
       <SidebarContent className="p-2 flex flex-col justify-between">
           <div>
             <div className="p-2">
-                <Collapsible>
-                    <CollapsibleTrigger className="w-full">
-                        <div className="flex items-center justify-between w-full">
-                            <div className="flex items-center gap-3">
-                                <Image
-                                    src="https://picsum.photos/seed/lucas/40/40"
-                                    width={40}
-                                    height={40}
-                                    alt="Lucas Ethan"
-                                    className="rounded-md"
-                                    data-ai-hint="person portrait"
-                                />
-                                <div>
-                                    <p className="font-semibold text-white">Lucas Ethan</p>
-                                    <p className="text-xs text-white/80">ID: 150001</p>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" className="w-full justify-start h-auto px-2 py-1.5">
+                            <div className="flex items-center justify-between w-full">
+                                <div className="flex items-center gap-3">
+                                    <Image
+                                        src="https://picsum.photos/seed/lucas/40/40"
+                                        width={40}
+                                        height={40}
+                                        alt="Lucas Ethan"
+                                        className="rounded-md"
+                                        data-ai-hint="person portrait"
+                                    />
+                                    <div>
+                                        <p className="font-semibold text-white text-left">Lucas Ethan</p>
+                                        <p className="text-xs text-white/80">ID: 150001</p>
+                                    </div>
                                 </div>
+                                <ChevronsUpDown size={16} className="text-white/80" />
                             </div>
-                            <ChevronDown size={16} className="text-white/80" />
-                        </div>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
-                        <div className="flex flex-col gap-1 pl-4 pt-2">
-                            <a href="#" className="text-sm text-sidebar-foreground/80 hover:text-sidebar-foreground">Profile</a>
-                            <a href="#" className="text-sm text-sidebar-foreground/80 hover:text-sidebar-foreground">Settings</a>
-                            <a href="#" className="text-sm text-sidebar-foreground/80 hover:text-sidebar-foreground">Logout</a>
-                        </div>
-                    </CollapsibleContent>
-                </Collapsible>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-64" side="bottom" align="start">
+                        <DropdownMenuLabel>Accounts</DropdownMenuLabel>
+                        <DropdownMenuGroup>
+                            <DropdownMenuItem>
+                                <User className="mr-2 h-4 w-4" />
+                                <span>Account Profile</span>
+                            </DropdownMenuItem>
+                             <DropdownMenuItem>
+                                <Building className="mr-2 h-4 w-4" />
+                                <span>Company Profile</span>
+                            </DropdownMenuItem>
+                        </DropdownMenuGroup>
+                        <DropdownMenuSeparator />
+                         <DropdownMenuLabel>Switch to</DropdownMenuLabel>
+                        <DropdownMenuGroup>
+                           <DropdownMenuItem>
+                                <span>Flatirons Development</span>
+                            </DropdownMenuItem>
+                             <DropdownMenuItem>
+                                <PlusCircle className="mr-2 h-4 w-4" />
+                                <span>New Team</span>
+                            </DropdownMenuItem>
+                        </DropdownMenuGroup>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem>
+                            <LogOut className="mr-2 h-4 w-4" />
+                            <span>Logout</span>
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
             </div>
             
             <SidebarGroup>
@@ -192,3 +231,5 @@ export function AppSidebar() {
     </Sidebar>
   )
 }
+
+    
