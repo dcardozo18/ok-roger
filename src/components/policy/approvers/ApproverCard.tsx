@@ -5,15 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Clock, Hourglass } from "lucide-react";
-
-interface ApproverCardProps {
-  name: string;
-  avatarUrl: string;
-  avatarFallback: string;
-  role: string;
-  pendingApprovals: number;
-  avgApprovalTime: string;
-}
+import { Approver } from "@/lib/data";
 
 export function ApproverCard({
   name,
@@ -22,7 +14,7 @@ export function ApproverCard({
   role,
   pendingApprovals,
   avgApprovalTime,
-}: ApproverCardProps) {
+}: Approver) {
   return (
     <Card className="flex flex-col">
       <CardHeader className="flex flex-row items-center gap-4">

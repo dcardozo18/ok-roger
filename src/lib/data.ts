@@ -18,10 +18,6 @@ export const stats: Stat[] = [
 ];
 
 export const reportStats: Stat[] = [
-    { title: "New Bookings", value: "1.2K", change: "+15.2%", icon: CalendarPlus },
-    { title: "Booking Changes", value: "350", change: "+5.1%", icon: CalendarCog },
-    { title: "Cancellations", value: "82", change: "-3.4%", icon: CalendarX },
-    { title: "Transactions", value: "2.8K", change: "+21.9%", icon: ArrowRightLeft },
     { title: "Spend Managed", value: "$450K", change: "+10%", icon: CircleDollarSign },
     { title: "Employee Time Saved", value: "500h", change: "+8%", icon: Clock },
     { title: "Check Ins", value: "1.5K", change: "+25%", icon: ShieldCheck },
@@ -109,9 +105,9 @@ export type TaskDistribution = {
 };
 
 export const taskDistribution: TaskDistribution[] = [
-  { department: "Hotels", tasks: 186, fill: "var(--color-Hotels)" },
-  { department: "Flights", tasks: 124, fill: "var(--color-Flights)" },
-  { department: "Car rental", tasks: 98, fill: "var(--color-Car rental)" },
+    { department: "Hotels", tasks: 186, fill: "var(--color-Hotels)" },
+    { department: "Flights", tasks: 124, fill: "var(--color-Flights)" },
+    { department: "Car rental", tasks: 98, fill: "var(--color-Car-rental)" },
 ];
 
 export type SalesData = {
@@ -156,16 +152,17 @@ export type Approver = {
   name: string;
   avatarUrl: string;
   avatarFallback: string;
+  email: string;
   role: string;
   pendingApprovals: number;
   avgApprovalTime: string;
 };
 
 export const approvers: Approver[] = [
-    { id: "1", name: "Samantha Carter", avatarUrl: "https://picsum.photos/seed/approver1/40/40", avatarFallback: "SC", role: "VP of Engineering", pendingApprovals: 5, avgApprovalTime: "2h" },
-    { id: "2", name: "John O'Neill", avatarUrl: "https://picsum.photos/seed/approver2/40/40", avatarFallback: "JO", role: "Director of Finance", pendingApprovals: 3, avgApprovalTime: "4h" },
-    { id: "3", name: "Daniel Jackson", avatarUrl: "https://picsum.photos/seed/approver3/40/40", avatarFallback: "DJ", role: "Lead Archaeologist", pendingApprovals: 8, avgApprovalTime: "1d" },
-    { id: "4", name: "Teal'c", avatarUrl: "https://picsum.photos/seed/approver4/40/40", avatarFallback: "T", role: "First Prime", pendingApprovals: 2, avgApprovalTime: "30m" },
-    { id: "5", name: "George Hammond", avatarUrl: "https://picsum.photos/seed/approver5/40/40", avatarFallback: "GH", role: "General, SGC", pendingApprovals: 1, avgApprovalTime: "1h" },
-    { id: "6", name: "Janet Fraiser", avatarUrl: "https://picsum.photos/seed/approver6/40/40", avatarFallback: "JF", role: "Chief Medical Officer", pendingApprovals: 4, avgApprovalTime: "3h" },
+    { id: "1", name: "Samantha Carter", avatarUrl: "https://picsum.photos/seed/approver1/40/40", avatarFallback: "SC", email: "samantha.carter@sgc.mil", role: "VP of Engineering", pendingApprovals: 5, avgApprovalTime: "2h" },
+    { id: "2", name: "John O'Neill", avatarUrl: "https://picsum.photos/seed/approver2/40/40", avatarFallback: "JO", email: "john.oneill@sgc.mil", role: "Director of Finance", pendingApprovals: 3, avgApprovalTime: "4h" },
+    { id: "3", name: "Daniel Jackson", avatarUrl: "https://picsum.photos/seed/approver3/40/40", avatarFallback: "DJ", email: "daniel.jackson@sgc.mil", role: "Lead Archaeologist", pendingApprovals: 8, avgApprovalTime: "1d" },
+    { id: "4", name: "Teal'c", avatarUrl: "https://picsum.photos/seed/approver4/40/40", avatarFallback: "T", email: "tealc@sgc.mil", role: "First Prime", pendingApprovals: 2, avgApprovalTime: "30m" },
+    { id: "5", name: "George Hammond", avatarUrl: "https://picsum.photos/seed/approver5/40/40", avatarFallback: "GH", email: "george.hammond@sgc.mil", role: "General, SGC", pendingApprovals: 1, avgApprovalTime: "1h" },
+    { id: "6", name: "Janet Fraiser", avatarUrl: "https://picsum.photos/seed/approver6/40/40", avatarFallback: "JF", email: "janet.fraiser@sgc.mil", role: "Chief Medical Officer", pendingApprovals: 4, avgApprovalTime: "3h" },
 ];

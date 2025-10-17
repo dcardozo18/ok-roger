@@ -1,7 +1,7 @@
 
 import { AppSidebar } from "@/components/AppSidebar";
 import { Header } from "@/components/dashboard/Header";
-import { ApproverCard } from "@/components/policy/approvers/ApproverCard";
+import { GlobalApproversTable } from "@/components/policy/approvers/GlobalApproversTable";
 import { SidebarInset } from "@/components/ui/sidebar";
 import { approvers } from "@/lib/data";
 
@@ -17,11 +17,7 @@ export default function GlobalApproversPage() {
                 <h1 className="text-2xl font-semibold">Global Approvers</h1>
                 <p className="text-muted-foreground">Manage your organization's global approvers.</p>
             </div>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {approvers.map((approver) => (
-                <ApproverCard key={approver.id} {...approver} />
-              ))}
-            </div>
+            <GlobalApproversTable approvers={approvers} />
           </main>
         </div>
       </SidebarInset>
