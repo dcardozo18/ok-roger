@@ -192,10 +192,18 @@ export function UsersTable({ users }: UsersTableProps) {
                 <CardDescription>A list of all users in your account.</CardDescription>
             </div>
             <div className="flex gap-2">
-                <Button variant="outline">
-                    <Upload className="mr-2 h-4 w-4" />
-                    Import Users
-                </Button>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="outline">
+                            <Upload className="mr-2 h-4 w-4" />
+                            Import Users
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuItem>Import via CSV</DropdownMenuItem>
+                        <DropdownMenuItem>Import via Directory</DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
                 <Button variant="outline">
                     <Download className="mr-2 h-4 w-4" />
                     Export Users
