@@ -1,8 +1,34 @@
+
 import { AppSidebar } from "@/components/AppSidebar";
 import { Header } from "@/components/dashboard/Header";
+import { PlatformCard } from "@/components/platforms/PlatformCard";
+import { GoogleSheetsLogo, MsTeamsLogo, OfficeExcelLogo, SlackLogo } from "@/components/platforms/PlatformLogos";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { SidebarInset } from "@/components/ui/sidebar";
 import { Rocket } from "lucide-react";
+
+const platforms = [
+    {
+      name: "Slack",
+      logo: <SlackLogo />,
+      status: "Inactive" as const,
+    },
+    {
+      name: "Google Sheets",
+      logo: <GoogleSheetsLogo />,
+      status: "Inactive" as const,
+    },
+    {
+      name: "Microsoft Teams",
+      logo: <MsTeamsLogo />,
+      status: "Inactive" as const,
+    },
+    {
+        name: "Office 365 Excel",
+        logo: <OfficeExcelLogo />,
+        status: "Inactive" as const,
+    }
+  ];
 
 export default function TravelStreamPage() {
   return (
@@ -16,14 +42,15 @@ export default function TravelStreamPage() {
                 <Card>
                     <CardHeader>
                         <CardTitle>Travel Stream</CardTitle>
+                        <CardDescription>
+                            Travel Stream allows you to receive real time notifications when employees book travel. This visibility also encourages responsible employee behavior and helps reduce travel spend. Visibility is the first step towards creating Accountability.
+                        </CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-lg">
-                            <Rocket className="h-12 w-12 text-muted-foreground mb-4" />
-                            <h3 className="text-xl font-semibold mb-2">Real-time Travel Notifications</h3>
-                            <p className="text-muted-foreground max-w-md mx-auto">
-                                Travel Stream allows you to receive real time notifications when employees book travel. This visibility also encourages responsible employee behavior and helps reduce travel spend. Visibility is the first step towards creating Accountability.
-                            </p>
+                        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                            {platforms.map((platform) => (
+                                <PlatformCard key={platform.name} {...platform} />
+                            ))}
                         </div>
                     </CardContent>
                 </Card>

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -19,7 +20,7 @@ export function PlatformCard({ name, logo, status, connectedBy }: PlatformCardPr
         {logo}
       </CardHeader>
       <CardContent>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-4">
             <div>
                 <Badge
                     className={
