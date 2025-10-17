@@ -45,6 +45,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import type { User } from "@/lib/data";
 import { cn } from "@/lib/utils";
+import { NewUserForm } from "./NewUserForm";
 
 const statusColors: Record<User["status"], string> = {
   Active: "bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300",
@@ -157,6 +158,7 @@ export function UsersTable({ users }: UsersTableProps) {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+  const [isNewUserDialogOpen, setIsNewUserDialogOpen] = React.useState(false);
 
   const table = useReactTable({
     data: users,
@@ -178,6 +180,8 @@ export function UsersTable({ users }: UsersTableProps) {
   });
 
   return (
+    <>
+    <NewUserForm open={isNewUserDialogOpen} onOpenChange={setIsNewUserDialogOpen} />
     <Card>
       <CardHeader>
         <div className="flex items-center justify-between">
@@ -194,7 +198,7 @@ export function UsersTable({ users }: UsersTableProps) {
                     <Download className="mr-2 h-4 w-4" />
                     Export Users
                 </Button>
-                <Button>
+                <Button onClick={() => setIsNewUserDialogOpen(true)}>
                     <UserPlus className="mr-2 h-4 w-4" />
                     New User
                 </Button>
@@ -286,5 +290,6 @@ export function UsersTable({ users }: UsersTableProps) {
         </div>
       </CardContent>
     </Card>
+    </>
   );
 }
