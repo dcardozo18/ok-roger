@@ -4,7 +4,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { AppSidebar } from "@/components/AppSidebar";
 import { Header } from "@/components/dashboard/Header";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,11 +14,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { SidebarInset } from "@/components/ui/sidebar";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -58,77 +55,72 @@ export default function CompanyProfilePage() {
   }
 
   return (
-    <div className="flex min-h-screen w-full">
-      <AppSidebar />
-      <SidebarInset>
-        <div className="flex flex-col bg-muted/40 flex-1">
-          <Header />
-          <main className="flex-1 p-4 sm:px-6 sm:py-0">
-            <Card>
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)}>
-                  <CardHeader>
-                    <CardTitle>Company Profile</CardTitle>
-                    <CardDescription>
-                      Manage your company's details and branding.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="grid gap-6">
-                    <div className="flex items-center gap-4">
-                        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-blue-500 text-white font-bold text-4xl">
-                            O
-                        </div>
-                        <Button variant="outline">Change Logo</Button>
+    <div className="flex flex-col bg-muted/40 flex-1">
+      <Header />
+      <main className="flex-1 p-4 sm:px-6 sm:py-0">
+        <Card>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+              <CardHeader>
+                <CardTitle>Company Profile</CardTitle>
+                <CardDescription>
+                  Manage your company's details and branding.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="grid gap-6">
+                <div className="flex items-center gap-4">
+                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-blue-500 text-white font-bold text-4xl">
+                        O
                     </div>
-                    <FormField
-                      control={form.control}
-                      name="companyName"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Company Name</FormLabel>
-                          <FormControl>
-                            <Input {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                     <FormField
-                      control={form.control}
-                      name="website"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Website</FormLabel>
-                          <FormControl>
-                            <Input {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="address"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Address</FormLabel>
-                          <FormControl>
-                            <Textarea {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </CardContent>
-                  <CardFooter className="border-t px-6 py-4">
-                    <Button type="submit">Save</Button>
-                  </CardFooter>
-                </form>
-              </Form>
-            </Card>
-          </main>
-        </div>
-      </SidebarInset>
+                    <Button variant="outline">Change Logo</Button>
+                </div>
+                <FormField
+                  control={form.control}
+                  name="companyName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Company Name</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                 <FormField
+                  control={form.control}
+                  name="website"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Website</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="address"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Address</FormLabel>
+                      <FormControl>
+                        <Textarea {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+              <CardFooter className="border-t px-6 py-4">
+                <Button type="submit">Save</Button>
+              </CardFooter>
+            </form>
+          </Form>
+        </Card>
+      </main>
     </div>
   );
 }

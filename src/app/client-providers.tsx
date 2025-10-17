@@ -12,7 +12,7 @@ export function ClientProviders({ children }: { children: React.ReactNode }) {
   }, []);
 
   if (!isMounted) {
-    return null;
+    return <>{children}</>;
   }
 
   return <SidebarProvider>{children}</SidebarProvider>;
