@@ -19,14 +19,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 import type { GroupEvent } from "@/lib/data";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "../ui/breadcrumb";
 
 type EventTag = GroupEvent["tag"];
 
@@ -110,17 +102,6 @@ export function CalendarView({ initialEvents }: CalendarViewProps) {
           {format(currentDate, "MMMM yyyy")}
         </div>
         <div className="flex items-center gap-4">
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="#">Calendar</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Default</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
           <div className="flex items-center gap-1 rounded-md bg-muted p-1">
             <Button variant="ghost" size="sm" className="bg-background">
               Month
