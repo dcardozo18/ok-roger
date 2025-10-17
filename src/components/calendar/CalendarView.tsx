@@ -23,10 +23,9 @@ import type { GroupEvent } from "@/lib/data";
 type EventTag = GroupEvent["tag"];
 
 const tagStyles: Record<EventTag, string> = {
-  Events: "bg-purple-500 hover:bg-purple-600 text-white",
-  Personal: "bg-blue-500 hover:bg-blue-600 text-white",
-  Meeting: "bg-green-500 hover:bg-green-600 text-white",
-  "Festival Function": "bg-teal-500 hover:bg-teal-600 text-white",
+  "Visit Place": "bg-purple-500 hover:bg-purple-600 text-white",
+  "Bus Tour": "bg-blue-500 hover:bg-blue-600 text-white",
+  "City Tour": "bg-green-500 hover:bg-green-600 text-white",
 };
 
 interface CalendarViewProps {
@@ -36,10 +35,9 @@ interface CalendarViewProps {
 export function CalendarView({ initialEvents }: CalendarViewProps) {
   const [currentDate, setCurrentDate] = React.useState(new Date("2025-10-01"));
   const [filters, setFilters] = React.useState<Record<EventTag, boolean>>({
-    Events: true,
-    Personal: true,
-    Meeting: true,
-    "Festival Function": true,
+    "Visit Place": true,
+    "Bus Tour": true,
+    "City Tour": true,
   });
 
   const firstDayOfMonth = startOfMonth(currentDate);

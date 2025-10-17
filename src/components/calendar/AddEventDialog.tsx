@@ -37,16 +37,15 @@ import type { GroupEvent } from "@/lib/data";
 type EventTag = GroupEvent["tag"];
 
 const tagStyles: Record<EventTag, string> = {
-  Events: "bg-purple-500 hover:bg-purple-600 text-white",
-  Personal: "bg-blue-500 hover:bg-blue-600 text-white",
-  Meeting: "bg-green-500 hover:bg-green-600 text-white",
-  "Festival Function": "bg-teal-500 hover:bg-teal-600 text-white",
+  "Visit Place": "bg-purple-500 hover:bg-purple-600 text-white",
+  "Bus Tour": "bg-blue-500 hover:bg-blue-600 text-white",
+  "City Tour": "bg-green-500 hover:bg-green-600 text-white",
 };
 
 const NewEventSchema = z.object({
   title: z.string().min(1, "Title is required"),
   date: z.string().min(1, "Date is required"),
-  tag: z.enum(["Events", "Personal", "Meeting", "Festival Function"]),
+  tag: z.enum(["Visit Place", "Bus Tour", "City Tour"]),
 });
 
 type NewEventFormValues = z.infer<typeof NewEventSchema>;
@@ -61,7 +60,7 @@ export function AddEventDialog({ open, onOpenChange, onEventAdd }: AddEventDialo
   const { toast } = useToast();
   const form = useForm<NewEventFormValues>({
     resolver: zodResolver(NewEventSchema),
-    defaultValues: { title: "", date: "", tag: "Events" },
+    defaultValues: { title: "", date: "", tag: "Visit Place" },
   });
 
   const onSubmit = (data: NewEventFormValues) => {

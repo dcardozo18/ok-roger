@@ -1,5 +1,4 @@
 
-
 import { DollarSign, ClipboardList, CheckCircle, Briefcase, User, Calendar, MessageSquare, PlusCircle, TrendingUp, Target, CalendarPlus, CalendarCog, CalendarX, ArrowRightLeft, CircleDollarSign, Users, Bell, Check, Clock, ShieldCheck } from 'lucide-react';
 import type { Icon as LucideIcon } from 'lucide-react';
 
@@ -211,15 +210,15 @@ export type GroupEvent = {
   date: string;
   time?: string;
   title: string;
-  tag: "Personal" | "Meeting" | "Festival Function" | "Events";
+  tag: "Visit Place" | "Bus Tour" | "City Tour";
 };
 
 export const groupEvents: GroupEvent[] = [
-  { id: "e1", date: "2025-10-01", title: "Meeting", tag: "Meeting" },
-  { id: "e2", date: "2025-10-07", title: "Update Weekly", tag: "Personal" },
-  { id: "e3", date: "2025-10-10", title: "School Reunion", tag: "Personal" },
-  { id: "e4", date: "2025-10-14", title: "Family Dinner", tag: "Personal" },
-  { id: "e5", date: "2025-10-14", title: "Holiday Tour", tag: "Events" },
-  { id: "e6", date: "2025-10-18", title: "Marriage Function", tag: "Festival Function" },
-  { id: "e7", date: "2025-10-23", title: "Meeting", tag: "Meeting" },
+  { id: "e1", date: "2025-10-01", title: "Eiffel Tower Visit", tag: "Visit Place" },
+  { id: "e2", date: "2025-10-07", title: "London by Night", tag: "Bus Tour" },
+  { id: "e3", date: "2025-10-10", title: "Tokyo City Tour", tag: "City Tour" },
+  { id: "e4", date: "2025-10-14", title: "Louvre Museum", tag: "Visit Place" },
+  { id: "e5", date: "2025-10-14", title: "Hop-on Hop-off", tag: "Bus Tour" },
+  { id: "e6", date: "2025-10-18", title: "Shibuya Crossing", tag: "Visit Place" },
+  { id: "e7", date: "2025-10-23", title: "Berlin Wall Tour", tag: "City Tour" },
 ];
