@@ -23,6 +23,7 @@ const platforms = [
       </svg>
     ),
     status: "Active",
+    connectedBy: "John Doe",
   },
   {
     name: "MS Teams",

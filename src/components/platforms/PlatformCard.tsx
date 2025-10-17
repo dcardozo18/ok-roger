@@ -8,9 +8,10 @@ interface PlatformCardProps {
   name: string;
   logo: React.ReactNode;
   status: "Active" | "Inactive";
+  connectedBy?: string;
 }
 
-export function PlatformCard({ name, logo, status }: PlatformCardProps) {
+export function PlatformCard({ name, logo, status, connectedBy }: PlatformCardProps) {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -29,6 +30,11 @@ export function PlatformCard({ name, logo, status }: PlatformCardProps) {
                 >
                     {status}
                 </Badge>
+                {status === "Active" && connectedBy && (
+                    <p className="text-xs text-muted-foreground mt-2">
+                        Connected by {connectedBy}
+                    </p>
+                )}
             </div>
             <Button variant="outline" size="sm">
               {status === "Active" ? "Manage" : "Connect"}
