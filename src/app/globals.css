@@ -109,11 +109,8 @@ body {
   }
 }
 
-@layer components {
-  .has-event {
-    @apply font-bold;
-  }
-  .has-event > div {
-    @apply bg-primary/10;
+@layer utilities {
+  .calendar-grid {
+    grid-template-rows: auto 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 }

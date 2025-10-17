@@ -22,6 +22,7 @@ const tagColors: Record<GroupEvent["tag"], string> = {
 
 export function GroupEventsCalendar({ events }: GroupEventsCalendarProps) {
   const [date, setDate] = React.useState<Date | undefined>(new Date())
+  const upcomingEvents = events.filter(event => new Date(event.date) >= new Date()).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
   const eventDates = events.map(event => new Date(event.date));
 
@@ -73,20 +74,33 @@ export function GroupEventsCalendar({ events }: GroupEventsCalendarProps) {
         <CardTitle>Group Events</CardTitle>
         <CardDescription>An overview of upcoming group events.</CardDescription>
       </CardHeader>
-      <CardContent className="flex-1 flex justify-center items-center">
-        <Calendar
-          mode="single"
-          selected={date}
-          onSelect={setDate}
-          modifiers={{ hasEvent: eventDates }}
-          modifiersClassNames={{
-            hasEvent: "has-event",
-          }}
-          components={{
-            Day: ({ date }) => EventDay(date),
-          }}
-          className="w-full p-0 [&_td]:p-0"
-        />
+      <CardContent className="flex flex-col flex-1">
+        <div className="flex-grow flex items-center justify-center">
+            <Calendar
+            mode="single"
+            selected={date}
+            onSelect={setDate}
+            modifiers={{ hasEvent: eventDates }}
+            modifiersClassNames={{
+                hasEvent: "has-event",
+            }}
+            className="p-0"
+            />
+        </div>
+        <div className="mt-4">
+            <h3 className="text-lg font-semibold mb-2">Upcoming</h3>
+            <div className="space-y-3">
+            {upcomingEvents.slice(0,3).map((event) => (
+                <div key={event.id} className="flex items-center justify-between p-3 rounded-lg bg-muted/50">
+                    <div>
+                        <p className="font-medium">{event.title}</p>
+                        <p className="text-sm text-muted-foreground">{new Date(event.date).toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })} at {event.time}</p>
+                    </div>
+                    <Badge variant="outline" className={cn("border-transparent", tagColors[event.tag])}>{event.tag}</Badge>
+                </div>
+            ))}
+            </div>
+        </div>
       </CardContent>
     </Card>
   )
