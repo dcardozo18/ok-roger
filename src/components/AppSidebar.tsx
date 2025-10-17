@@ -189,10 +189,12 @@ export function AppSidebar() {
                                     <span>Account Profile</span>
                                 </DropdownMenuItem>
                             </Link>
-                             <DropdownMenuItem>
-                                <Building className="mr-2 h-4 w-4" />
-                                <span>Company Profile</span>
-                            </DropdownMenuItem>
+                            <Link href="/account/company-profile">
+                                 <DropdownMenuItem>
+                                    <Building className="mr-2 h-4 w-4" />
+                                    <span>Company Profile</span>
+                                </DropdownMenuItem>
+                            </Link>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
                          <DropdownMenuLabel>Switch to</DropdownMenuLabel>
