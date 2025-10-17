@@ -102,3 +102,23 @@ export const taskDistribution: TaskDistribution[] = [
   { department: "Marketing", tasks: 80, fill: "var(--color-marketing)" },
   { department: "QA", tasks: 50, fill: "var(--color-qa)" },
 ];
+
+export type SalesData = {
+  month: string;
+  sales: number;
+};
+
+export const monthlySales: SalesData[] = [
+  { month: "Jan", sales: 4000 },
+  { month: "Feb", sales: 3000 },
+  { month: "Mar", sales: 5000 },
+  { month: "Apr", sales: 4500 },
+  { month: "May", sales: 6000 },
+  { month: "Jun", sales: 5500 },
+  { month: "Jul", sales: 7000 },
+  { month: "Aug", sales: 6500 },
+  { month: "Sep", sales: 7500 },
+  { month: "Oct", sales: 8000 },
+  { month: "Nov", sales: 9000 },
+  { month: "Dec", sales: 10000 },
+];

@@ -1,11 +1,11 @@
 import { StatCard } from "@/components/dashboard/StatCard";
-import { ClientList } from "@/components/dashboard/ClientList";
+import { SalesChart } from "@/components/dashboard/SalesChart";
 import { ActiveProjects } from "@/components/dashboard/ActiveProjects";
 import { TeamMembers } from "@/components/dashboard/TeamMembers";
 import { TaskDistributionChart } from "@/components/dashboard/TaskDistributionChart";
 import { TaskList } from "@/components/dashboard/TaskList";
 import { ActivityStream } from "@/components/dashboard/ActivityStream";
-import { stats, clients, activeProjects, teamMembers, tasks, activityStream, taskDistribution } from "@/lib/data";
+import { stats, monthlySales, activeProjects, teamMembers, tasks, activityStream, taskDistribution } from "@/lib/data";
 import { Header } from "@/components/dashboard/Header";
 import { AppSidebar } from "@/components/AppSidebar";
 import { SidebarInset } from "@/components/ui/sidebar";
@@ -27,7 +27,7 @@ export default function DashboardPage() {
                 </div>
                 <div className="grid grid-cols-1 gap-4 lg:col-span-3 lg:grid-cols-2 xl:grid-cols-3">
                   <div className="xl:col-span-2">
-                    <ClientList clients={clients} />
+                    <SalesChart data={monthlySales} />
                   </div>
                   <div>
                     <ActiveProjects projects={activeProjects} />
