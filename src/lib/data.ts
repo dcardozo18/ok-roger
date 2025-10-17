@@ -166,3 +166,38 @@ export const approvers: Approver[] = [
     { id: "5", name: "George Hammond", avatarUrl: "https://picsum.photos/seed/approver5/40/40", avatarFallback: "GH", email: "george.hammond@sgc.mil", role: "General, SGC", pendingApprovals: 1, avgApprovalTime: "1h" },
     { id: "6", name: "Janet Fraiser", avatarUrl: "https://picsum.photos/seed/approver6/40/40", avatarFallback: "JF", email: "janet.fraiser@sgc.mil", role: "Chief Medical Officer", pendingApprovals: 4, avgApprovalTime: "3h" },
 ];
+
+export type City = {
+    id: string;
+    name: string;
+    country: string;
+}
+
+export type CityTier = City & {
+    imageUrl: string;
+    imageHint: string;
+};
+  
+export const allCities: City[] = [
+    { id: "nyc", name: "New York", country: "USA" },
+    { id: "london", name: "London", country: "UK" },
+    { id: "paris", name: "Paris", country: "France" },
+    { id: "tokyo", name: "Tokyo", country: "Japan" },
+    { id: "sydney", name: "Sydney", country: "Australia" },
+    { id: "dubai", name: "Dubai", country: "UAE" },
+    { id: "singapore", name: "Singapore", country: "Singapore" },
+    { id: "berlin", name: "Berlin", country: "Germany" },
+    { id: "rome", name: "Rome", country: "Italy" },
+    { id: "cairo", name: "Cairo", country: "Egypt" },
+    { id: "moscow", name: "Moscow", country: "Russia" },
+    { id: "rio", name: "Rio de Janeiro", country: "Brazil" },
+    { id: "beijing", name: "Beijing", country: "China" },
+    { id: "mumbai", name: "Mumbai", country: "India" },
+    { id: "toronto", name: "Toronto", country: "Canada" },
+];
+
+export const cityTiers: CityTier[] = [
+    { id: "nyc", name: "New York", country: "USA", imageUrl: "https://picsum.photos/seed/nyc/80/60", imageHint: "city skyline" },
+    { id: "london", name: "London", country: "UK", imageUrl: "https://picsum.photos/seed/london/80/60", imageHint: "city bridge" },
+    { id: "tokyo", name: "Tokyo", country: "Japan", imageUrl: "https://picsum.photos/seed/tokyo/80/60", imageHint: "city street" },
+];
