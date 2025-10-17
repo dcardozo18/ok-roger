@@ -342,7 +342,11 @@ export function ExcludedUsersTable({ excludedUsers, allUsers }: ExcludedUsersTab
       />
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-end">
+          <div className="flex items-center justify-between">
+            <div>
+                <CardTitle>Excluded Users</CardTitle>
+                <CardDescription>Manage users who are excluded from all policy rules.</CardDescription>
+            </div>
               <Button onClick={() => setIsNewUserDialogOpen(true)}>
                   <PlusCircle className="mr-2 h-4 w-4" />
                   Add Excluded User
