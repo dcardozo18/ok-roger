@@ -352,7 +352,11 @@ export function GlobalApproversTable({ approvers }: GlobalApproversTableProps) {
       />
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-end">
+          <div className="flex items-center justify-between">
+              <div>
+                <CardTitle>Global Approvers</CardTitle>
+                <CardDescription>Manage your organization's global approvers.</CardDescription>
+              </div>
               <Button onClick={() => setIsNewApproverDialogOpen(true)}>
                   <PlusCircle className="mr-2 h-4 w-4" />
                   New Approver
