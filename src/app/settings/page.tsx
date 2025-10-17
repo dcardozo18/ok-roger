@@ -13,11 +13,14 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 
 const settingsFormSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Please enter a valid email"),
   bio: z.string().max(160, "Bio cannot be longer than 160 characters.").optional(),
+  currency: z.string().optional(),
 });
 
 type SettingsFormValues = z.infer<typeof settingsFormSchema>;
@@ -30,6 +33,7 @@ export default function SettingsPage() {
       name: "Lucas Ethan",
       email: "lucas.ethan@ok-roger.com",
       bio: "Lead Developer at OK Roger.",
+      currency: "USD",
     },
   });
 
@@ -100,6 +104,34 @@ export default function SettingsPage() {
                           <FormDescription>
                             You can @mention other users and organizations.
                           </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <Separator />
+                    <div>
+                      <h3 className="text-lg font-medium">Regional Settings</h3>
+                      <p className="text-sm text-muted-foreground">Set your preferred currency.</p>
+                    </div>
+                    <FormField
+                      control={form.control}
+                      name="currency"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Currency</FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select a currency" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="USD">USD (US Dollar)</SelectItem>
+                              <SelectItem value="EUR">EUR (Euro)</SelectItem>
+                              <SelectItem value="GBP">GBP (British Pound)</SelectItem>
+                              <SelectItem value="JPY">JPY (Japanese Yen)</SelectItem>
+                            </SelectContent>
+                          </Select>
                           <FormMessage />
                         </FormItem>
                       )}
