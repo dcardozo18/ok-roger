@@ -1,0 +1,119 @@
+
+"use client";
+
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { AppSidebar } from "@/components/AppSidebar";
+import { Header } from "@/components/dashboard/Header";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { SidebarInset } from "@/components/ui/sidebar";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+
+const settingsFormSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Please enter a valid email"),
+  bio: z.string().max(160, "Bio cannot be longer than 160 characters.").optional(),
+});
+
+type SettingsFormValues = z.infer<typeof settingsFormSchema>;
+
+export default function SettingsPage() {
+  const { toast } = useToast();
+  const form = useForm<SettingsFormValues>({
+    resolver: zodResolver(settingsFormSchema),
+    defaultValues: {
+      name: "Lucas Ethan",
+      email: "lucas.ethan@ok-roger.com",
+      bio: "Lead Developer at OK Roger.",
+    },
+  });
+
+  function onSubmit(data: SettingsFormValues) {
+    console.log(data);
+    toast({
+      title: "Settings saved",
+      description: "Your new settings have been saved successfully.",
+    });
+  }
+
+  return (
+    <div className="flex min-h-screen w-full">
+      <AppSidebar />
+      <SidebarInset>
+        <div className="flex flex-col bg-muted/40 flex-1">
+          <Header />
+          <main className="flex-1 p-4 sm:px-6 sm:py-0">
+            <Card>
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)}>
+                  <CardHeader>
+                    <CardTitle>Settings</CardTitle>
+                    <CardDescription>
+                      Manage your account settings and set e-mail preferences.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="grid gap-6">
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Name</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Your name" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Email</FormLabel>
+                          <FormControl>
+                            <Input type="email" placeholder="Your email" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="bio"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Bio</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="Tell us a little bit about yourself"
+                              className="resize-none"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormDescription>
+                            You can @mention other users and organizations.
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </CardContent>
+                  <CardFooter className="border-t px-6 py-4">
+                    <Button type="submit">Save</Button>
+                  </CardFooter>
+                </form>
+              </Form>
+            </Card>
+          </main>
+        </div>
+      </SidebarInset>
+    </div>
+  );
+}

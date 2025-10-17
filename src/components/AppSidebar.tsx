@@ -53,7 +53,7 @@ const menuItems = [
 
 const helpAndSettingsItems = [
     { label: "Help", icon: HelpCircle, href: "/help" },
-    { label: "Settings", icon: Settings },
+    { label: "Settings", icon: Settings, href: "/settings" },
 ]
 
 function MenuItem({ item, isActive }: { item: {label: string, icon: React.ElementType, href?: string, subItems?: any[]}, isActive: boolean }) {
