@@ -14,39 +14,10 @@ import {
   startOfWeek,
   subMonths,
 } from "date-fns";
-import { ChevronLeft, ChevronRight, PlusCircle } from "lucide-react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
 import type { GroupEvent } from "@/lib/data";
 import {
   Breadcrumb,
@@ -70,130 +41,8 @@ interface CalendarViewProps {
   initialEvents: GroupEvent[];
 }
 
-const NewEventSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  date: z.string().min(1, "Date is required"),
-  tag: z.enum(["Events", "Personal", "Meeting", "Festival Function"]),
-});
-
-type NewEventFormValues = z.infer<typeof NewEventSchema>;
-
-function AddEventDialog({
-  onEventAdd,
-  children,
-}: {
-  onEventAdd: (event: GroupEvent) => void;
-  children: React.ReactNode;
-}) {
-  const { toast } = useToast();
-  const [open, setOpen] = React.useState(false);
-  const form = useForm<NewEventFormValues>({
-    resolver: zodResolver(NewEventSchema),
-    defaultValues: { title: "", date: "", tag: "Events" },
-  });
-
-  const onSubmit = (data: NewEventFormValues) => {
-    const newEvent: GroupEvent = {
-      id: crypto.randomUUID(),
-      ...data,
-      date: new Date(data.date).toISOString(),
-    };
-    onEventAdd(newEvent);
-    toast({
-      title: "Event Added",
-      description: `${data.title} has been added to the calendar.`,
-    });
-    setOpen(false);
-    form.reset();
-  };
-
-  return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <DialogHeader>
-              <DialogTitle>Add New Event</DialogTitle>
-              <DialogDescription>
-                Fill in the details for your new event.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="grid gap-4 py-4">
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Title</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="date"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Date</FormLabel>
-                    <FormControl>
-                      <Input type="date" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="tag"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Tag</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a tag" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {Object.keys(tagStyles).map((tag) => (
-                          <SelectItem key={tag} value={tag}>
-                            {tag}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <DialogFooter>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setOpen(false)}
-              >
-                Cancel
-              </Button>
-              <Button type="submit">Add Event</Button>
-            </DialogFooter>
-          </form>
-        </Form>
-      </DialogContent>
-    </Dialog>
-  );
-}
-
 export function CalendarView({ initialEvents }: CalendarViewProps) {
   const [currentDate, setCurrentDate] = React.useState(new Date("2025-10-01"));
-  const [events, setEvents] = React.useState<GroupEvent[]>(initialEvents);
   const [filters, setFilters] = React.useState<Record<EventTag, boolean>>({
     Events: true,
     Personal: true,
@@ -207,17 +56,13 @@ export function CalendarView({ initialEvents }: CalendarViewProps) {
   const lastDay = endOfWeek(lastDayOfMonth);
   const days = eachDayOfInterval({ start: firstDay, end: lastDay });
 
-  const handleEventAdd = (event: GroupEvent) => {
-    setEvents((prev) => [...prev, event]);
-  };
-
   const toggleFilter = (tag: EventTag) => {
     setFilters((prev) => ({ ...prev, [tag]: !prev[tag] }));
   };
 
   const filteredEvents = React.useMemo(
-    () => events.filter((event) => filters[event.tag]),
-    [events, filters]
+    () => initialEvents.filter((event) => filters[event.tag]),
+    [initialEvents, filters]
   );
 
   return (
@@ -276,12 +121,6 @@ export function CalendarView({ initialEvents }: CalendarViewProps) {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-          <AddEventDialog onEventAdd={handleEventAdd}>
-            <Button>
-              <PlusCircle className="mr-2 h-4 w-4" />
-              Add Event
-            </Button>
-          </AddEventDialog>
           <div className="flex items-center gap-1 rounded-md bg-muted p-1">
             <Button variant="ghost" size="sm" className="bg-background">
               Month
