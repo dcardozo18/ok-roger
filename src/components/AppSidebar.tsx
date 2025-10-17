@@ -1,4 +1,5 @@
 
+
 "use client"
 
 import * as React from "react"
@@ -182,10 +183,12 @@ export function AppSidebar() {
                     <DropdownMenuContent className="w-64" side="right" align="end" sideOffset={5}>
                         <DropdownMenuLabel>Accounts</DropdownMenuLabel>
                         <DropdownMenuGroup>
-                            <DropdownMenuItem>
-                                <User className="mr-2 h-4 w-4" />
-                                <span>Account Profile</span>
-                            </DropdownMenuItem>
+                            <Link href="/account/profile">
+                                <DropdownMenuItem>
+                                    <User className="mr-2 h-4 w-4" />
+                                    <span>Account Profile</span>
+                                </DropdownMenuItem>
+                            </Link>
                              <DropdownMenuItem>
                                 <Building className="mr-2 h-4 w-4" />
                                 <span>Company Profile</span>
