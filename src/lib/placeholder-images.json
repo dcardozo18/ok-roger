@@ -1,3 +1,52 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "avatar1",
+      "description": "User avatar 1",
+      "imageUrl": "https://picsum.photos/seed/avatar1/40/40",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "avatar2",
+      "description": "User avatar 2",
+      "imageUrl": "https://picsum.photos/seed/avatar2/40/40",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "avatar3",
+      "description": "User avatar 3",
+      "imageUrl": "https://picsum.photos/seed/avatar3/40/40",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "avatar4",
+      "description": "User avatar 4",
+      "imageUrl": "https://picsum.photos/seed/avatar4/40/40",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "team1",
+      "description": "Team member avatar 1",
+      "imageUrl": "https://picsum.photos/seed/team1/40/40",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "team2",
+      "description": "Team member avatar 2",
+      "imageUrl": "https://picsum.photos/seed/team2/40/40",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "team3",
+      "description": "Team member avatar 3",
+      "imageUrl": "https://picsum.photos/seed/team3/40/40",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "user-profile",
+      "description": "Main user profile avatar",
+      "imageUrl": "https://picsum.photos/seed/mainuser/40/40",
+      "imageHint": "person portrait"
+    }
+  ]
 }
