@@ -83,7 +83,7 @@ function MenuItem({ item, isActive }: { item: {label: string, icon: React.Elemen
   const pathname = usePathname();
   
   const isSubItemActive = hasSubItems && item.subItems!.some(sub => pathname.startsWith(sub.href!));
-  const [isOpen, setIsOpen] = React.useState(isSubItemActive);
+  const [isOpen, setIsOpen] = React.useState(true);
 
   return (
       <Collapsible open={isOpen} onOpenChange={setIsOpen} asChild>
