@@ -13,7 +13,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react";
+import { MoreHorizontal, UserPlus, Upload, Download } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -180,8 +180,26 @@ export function UsersTable({ users }: UsersTableProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Users</CardTitle>
-        <CardDescription>A list of all users in your account.</CardDescription>
+        <div className="flex items-center justify-between">
+            <div>
+                <CardTitle>Users</CardTitle>
+                <CardDescription>A list of all users in your account.</CardDescription>
+            </div>
+            <div className="flex gap-2">
+                <Button variant="outline">
+                    <Upload className="mr-2 h-4 w-4" />
+                    Import Users
+                </Button>
+                <Button variant="outline">
+                    <Download className="mr-2 h-4 w-4" />
+                    Export Users
+                </Button>
+                <Button>
+                    <UserPlus className="mr-2 h-4 w-4" />
+                    New User
+                </Button>
+            </div>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="flex items-center py-4">
