@@ -3,13 +3,9 @@ import Link from "next/link"
 import Image from "next/image"
 import {
   Home,
-  LineChart,
-  Package,
   Package2,
   PanelLeft,
   Search,
-  ShoppingCart,
-  Users2,
 } from "lucide-react"
 
 import {

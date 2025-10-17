@@ -1,5 +1,3 @@
-
-import { Header } from "@/components/dashboard/Header";
 import { StatCard } from "@/components/dashboard/StatCard";
 import { ClientList } from "@/components/dashboard/ClientList";
 import { ActiveProjects } from "@/components/dashboard/ActiveProjects";
@@ -8,6 +6,8 @@ import { TaskDistributionChart } from "@/components/dashboard/TaskDistributionCh
 import { TaskList } from "@/components/dashboard/TaskList";
 import { ActivityStream } from "@/components/dashboard/ActivityStream";
 import { stats, clients, activeProjects, teamMembers, tasks, activityStream, taskDistribution } from "@/lib/data";
+import { Header } from "@/components/dashboard/Header";
+
 
 export default function DashboardPage() {
   return (
