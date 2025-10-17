@@ -1,10 +1,34 @@
+
 import { AppSidebar } from "@/components/AppSidebar";
 import { Header } from "@/components/dashboard/Header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { SidebarInset } from "@/components/ui/sidebar";
-import { DollarSign, CreditCard } from "lucide-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Switch } from "@/components/ui/switch";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+const creditCards = [
+    {
+        name: "Primary Card",
+        brand: "Visa",
+        number: "**** **** **** 1234",
+        isDefault: true,
+        authorizedUsers: [
+            { name: "User 1", fallback: "U1", avatarUrl: "https://picsum.photos/seed/user1/40/40" },
+            { name: "User 2", fallback: "U2", avatarUrl: "https://picsum.photos/seed/user2/40/40" },
+        ]
+    },
+    {
+        name: "Secondary Card",
+        brand: "Mastercard",
+        number: "**** **** **** 5678",
+        isDefault: false,
+        authorizedUsers: [
+             { name: "User 3", fallback: "U3", avatarUrl: "https://picsum.photos/seed/user3/40/40" },
+        ]
+    }
+]
 
 export default function PaymentsPage() {
   return (
@@ -14,34 +38,49 @@ export default function PaymentsPage() {
         <div className="flex flex-col bg-muted/40 flex-1">
           <Header />
           <main className="flex-1 p-4 sm:px-6 sm:py-0">
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-6 md:grid-cols-1">
               <Card>
-                <CardHeader>
-                  <CardTitle>Credit Cards</CardTitle>
-                  <CardDescription>Manage your saved payment methods.</CardDescription>
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <div>
+                    <CardTitle>Credit Cards</CardTitle>
+                    <CardDescription>Manage your saved payment methods.</CardDescription>
+                  </div>
+                  <Button>Add Credit Card</Button>
                 </CardHeader>
-                <CardContent className="grid gap-4">
-                    <div className="flex items-center justify-between p-4 bg-background rounded-lg border">
-                        <div className="flex items-center gap-4">
-                            <CreditCard className="h-6 w-6 text-muted-foreground" />
-                            <div>
-                                <p className="font-medium">Visa ending in 1234</p>
-                                <p className="text-sm text-muted-foreground">Expires 08/2026</p>
-                            </div>
-                        </div>
-                        <Button variant="outline" size="sm">Edit</Button>
-                    </div>
-                    <div className="flex items-center justify-between p-4 bg-background rounded-lg border">
-                        <div className="flex items-center gap-4">
-                            <DollarSign className="h-6 w-6 text-muted-foreground" />
-                            <div>
-                                <p className="font-medium">PayPal</p>
-                                <p className="text-sm text-muted-foreground">billing@example.com</p>
-                            </div>
-                        </div>
-                        <Button variant="outline" size="sm">Edit</Button>
-                    </div>
-                     <Button>Add Payment Method</Button>
+                <CardContent>
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead>Name</TableHead>
+                                <TableHead>Brand</TableHead>
+                                <TableHead>Number</TableHead>
+                                <TableHead>Enforce Default</TableHead>
+                                <TableHead>Authorized Users</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {creditCards.map((card) => (
+                                <TableRow key={card.number}>
+                                    <TableCell className="font-medium">{card.name}</TableCell>
+                                    <TableCell>{card.brand}</TableCell>
+                                    <TableCell>{card.number}</TableCell>
+                                    <TableCell>
+                                        <Switch checked={card.isDefault} />
+                                    </TableCell>
+                                    <TableCell>
+                                        <div className="flex -space-x-2">
+                                            {card.authorizedUsers.map(user => (
+                                                <Avatar key={user.name} className="border-2 border-white">
+                                                    <AvatarImage src={user.avatarUrl} alt={user.name} data-ai-hint="person portrait" />
+                                                    <AvatarFallback>{user.fallback}</AvatarFallback>
+                                                </Avatar>
+                                            ))}
+                                        </div>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
                 </CardContent>
               </Card>
 
