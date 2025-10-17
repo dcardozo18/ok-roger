@@ -6,7 +6,7 @@ import { StatCard } from "@/components/dashboard/StatCard";
 import { TaskDistributionChart } from "@/components/dashboard/TaskDistributionChart";
 import { TeamMembers } from "@/components/dashboard/TeamMembers";
 import { SidebarInset } from "@/components/ui/sidebar";
-import { monthlySales, stats, taskDistribution, teamMembers } from "@/lib/data";
+import { monthlySales, reportStats, taskDistribution, teamMembers } from "@/lib/data";
 
 export default function ReportsPage() {
   return (
@@ -17,7 +17,7 @@ export default function ReportsPage() {
           <Header />
           <main className="flex-1 p-4 sm:px-6 sm:py-0 grid gap-4 md:gap-8">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                {stats.map((stat) => (
+                {reportStats.map((stat) => (
                     <StatCard key={stat.title} {...stat} />
                 ))}
             </div>
