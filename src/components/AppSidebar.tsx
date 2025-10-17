@@ -159,7 +159,7 @@ export function AppSidebar() {
             <div className="p-2">
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="w-full justify-start h-auto px-2 py-1.5">
+                        <Button variant="ghost" className="w-full justify-start h-auto px-2 py-1.5 hover:bg-transparent">
                             <div className="flex items-center justify-between w-full">
                                 <div className="flex items-center gap-3">
                                     <Image
@@ -179,7 +179,7 @@ export function AppSidebar() {
                             </div>
                         </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-64" side="bottom" align="start">
+                    <DropdownMenuContent className="w-64" side="right" align="end" sideOffset={5}>
                         <DropdownMenuLabel>Accounts</DropdownMenuLabel>
                         <DropdownMenuGroup>
                             <DropdownMenuItem>
@@ -231,5 +231,3 @@ export function AppSidebar() {
     </Sidebar>
   )
 }
-
-    
