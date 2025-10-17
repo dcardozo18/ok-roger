@@ -205,3 +205,20 @@ export const cityTiers: CityTier[] = [
     { id: "london", name: "London", country: "UK", imageUrl: "https://picsum.photos/seed/london/80/60", imageHint: "city bridge" },
     { id: "tokyo", name: "Tokyo", country: "Japan", imageUrl: "https://picsum.photos/seed/tokyo/80/60", imageHint: "city street" },
 ];
+
+export type GroupEvent = {
+  id: string;
+  date: string;
+  time: string;
+  title: string;
+  tag: "Team" | "Product" | "Company";
+};
+
+export const groupEvents: GroupEvent[] = [
+  { id: "e1", date: "2024-07-22", time: "10:00 AM", title: "Q3 Planning Session", tag: "Team" },
+  { id: "e2", date: "2024-07-22", time: "2:00 PM", title: "Product Sync", tag: "Product" },
+  { id: "e3", date: "2024-07-25", time: "4:00 PM", title: "All-Hands Meeting", tag: "Company" },
+  { id: "e4", date: "2024-08-01", time: "11:00 AM", title: "Sprint Retrospective", tag: "Team" },
+  { id: "e5", date: "2024-08-05", time: "9:00 AM", title: "New Feature Kick-off", tag: "Product" },
+  { id: "e6", date: "2024-07-15", time: "1:00 PM", title: "Design Review", tag: "Product" },
+];

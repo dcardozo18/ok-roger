@@ -60,7 +60,7 @@ const menuItems = [
     ]
   },
   { label: "Reports", icon: BarChart2, href: "/reports" },
-  { label: "Group Events", icon: CalendarDays },
+  { label: "Group Events", icon: CalendarDays, href: "/group-events" },
   { label: "Map", icon: Map, href: "/map" },
   { 
     label: "Billing", 
