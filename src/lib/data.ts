@@ -138,15 +138,15 @@ export const monthlySales: SalesData[] = [
 export type Rule = {
   id: string;
   name: string;
-  description: string;
-  status: "Active" | "Inactive";
-  lastUpdated: string;
+  service: string;
+  triggers: string[];
+  appliesTo: string;
 };
 
 export const policyRules: Rule[] = [
-  { id: "R001", name: "International Travel", description: "Requires VP approval for all international trips.", status: "Active", lastUpdated: "2023-03-15" },
-  { id: "R002", name: "Domestic Flights > $500", description: "Requires manager approval for domestic flights over $500.", status: "Active", lastUpdated: "2023-02-28" },
-  { id: "R003", name: "Hotel Booking > 4 nights", description: "Requires justification for hotel stays longer than 4 nights.", status: "Inactive", lastUpdated: "2023-01-10" },
-  { id: "R004", name: "Car Rental - Premium", description: "Premium car rentals are only allowed for client-facing trips.", status: "Active", lastUpdated: "2023-04-01" },
-  { id: "R005", name: "Expense Report Deadline", description: "All expenses must be submitted within 30 days.", status: "Active", lastUpdated: "2022-12-01" },
+  { id: "R001", name: "Business Class Flights", service: "Flights", triggers: ["Price > $1000", "International"], appliesTo: "Execs" },
+  { id: "R002", name: "5-Star Hotels", service: "Hotels", triggers: ["Rating = 5"], appliesTo: "Client Facing" },
+  { id: "R003", name: "SUV Rentals", service: "Cars", triggers: ["Group > 3", "Equipment"], appliesTo: "All Users" },
+  { id: "R004", name: "Last Minute Booking", service: "All", triggers: ["< 48 hours"], appliesTo: "All Users" },
+  { id: "R005", name: "High Cost Travel", service: "All", triggers: ["Total > $5000"], appliesTo: "All Users" },
 ];

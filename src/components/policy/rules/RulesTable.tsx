@@ -14,7 +14,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { MoreHorizontal, PlusCircle } from "lucide-react";
+import { MoreHorizontal, PlusCircle, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -46,11 +46,6 @@ import { Badge } from "@/components/ui/badge";
 import type { Rule } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
-const statusColors: Record<Rule["status"], string> = {
-  Active: "bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300",
-  Inactive: "bg-gray-100 text-gray-800 dark:bg-gray-700/50 dark:text-gray-300",
-};
-
 export const columns: ColumnDef<Rule>[] = [
   {
     id: "select",
@@ -76,46 +71,40 @@ export const columns: ColumnDef<Rule>[] = [
   },
   {
     accessorKey: "name",
-    header: "Rule Name",
+    header: "Name",
     cell: ({ row }) => <div className="font-medium">{row.getValue("name")}</div>,
   },
   {
-    accessorKey: "description",
-    header: "Description",
+    accessorKey: "service",
+    header: "Service",
+    cell: ({ row }) => <Badge variant="outline">{row.getValue("service")}</Badge>,
   },
   {
-    accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => <Badge variant="outline" className={cn("border-transparent", statusColors[row.original.status])}>{row.getValue("status")}</Badge>,
+    accessorKey: "triggers",
+    header: "Triggers",
+    cell: ({ row }) => {
+      const triggers = row.getValue("triggers") as string[];
+      return (
+        <div className="flex flex-wrap gap-1">
+          {triggers.map((trigger) => (
+            <Badge key={trigger} variant="secondary">{trigger}</Badge>
+          ))}
+        </div>
+      );
+    },
   },
   {
-    accessorKey: "lastUpdated",
-    header: "Last Updated",
+    accessorKey: "appliesTo",
+    header: "Applies to",
   },
   {
     id: "actions",
     cell: ({ row }) => {
-      const rule = row.original;
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(rule.id)}
-            >
-              Copy rule ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Edit rule</DropdownMenuItem>
-            <DropdownMenuItem>Delete rule</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-destructive">
+            <Trash2 className="h-4 w-4" />
+            <span className="sr-only">Delete rule</span>
+        </Button>
       );
     },
   },
