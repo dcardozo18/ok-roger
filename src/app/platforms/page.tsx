@@ -38,7 +38,7 @@ const platforms = [
         <circle fill="#fff" cx="77" cy="56.8" r="5.1" />
       </svg>
     ),
-    status: "Active",
+    status: "Inactive",
   },
   {
     name: "Google",
@@ -54,7 +54,7 @@ const platforms = [
             <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.574l6.19,5.238C42.021,35.596,44,30.138,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
         </svg>
     ),
-    status: "Active",
+    status: "Inactive",
   },
 ];
 

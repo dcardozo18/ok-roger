@@ -30,7 +30,9 @@ export function PlatformCard({ name, logo, status }: PlatformCardProps) {
                     {status}
                 </Badge>
             </div>
-            <Button variant="outline" size="sm">Manage</Button>
+            <Button variant="outline" size="sm">
+              {status === "Active" ? "Manage" : "Connect"}
+            </Button>
         </div>
       </CardContent>
     </Card>
