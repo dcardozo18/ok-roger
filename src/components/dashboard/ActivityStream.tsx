@@ -9,8 +9,8 @@ export function ActivityStream({ activities }: ActivityStreamProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Activity Stream</CardTitle>
-        <CardDescription>What's been happening in your projects.</CardDescription>
+        <CardTitle>Activity Team</CardTitle>
+        <CardDescription>Recent activities from your sales team.</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">

@@ -1,4 +1,4 @@
-import { DollarSign, ClipboardList, CheckCircle, Briefcase, User, Calendar, MessageSquare, PlusCircle } from 'lucide-react';
+import { DollarSign, ClipboardList, CheckCircle, Briefcase, User, Calendar, MessageSquare, PlusCircle, TrendingUp, Target } from 'lucide-react';
 import type { Icon as LucideIcon } from 'lucide-react';
 
 export type Stat = {
@@ -94,10 +94,10 @@ export type Activity = {
 };
 
 export const activityStream: Activity[] = [
-  { id: "a1", user: "John Doe", action: "commented on", target: "Task 'Homepage Redesign'", time: "2 min ago", icon: MessageSquare },
-  { id: "a2", user: "Jane Smith", action: "created a new project", target: "'Mobile App v2'", time: "10 min ago", icon: PlusCircle },
-  { id: "a3", user: "Mike Johnson", action: "completed a task", target: "'API Integration'", time: "30 min ago", icon: CheckCircle },
-  { id: "a4", user: "John Doe", action: "added a new client", target: "'Innovate Corp'", time: "1 hr ago", icon: User },
+  { id: "a1", user: "Olivia Martin", action: "closed a deal with", target: "Acme Inc.", time: "5 min ago", icon: DollarSign },
+  { id: "a2", user: "Liam Johnson", action: "added a new lead", target: "Globex Corporation", time: "20 min ago", icon: PlusCircle },
+  { id: "a3", user: "Emma Wilson", action: "updated the status of", target: "Stark Industries", time: "45 min ago", icon: TrendingUp },
+  { id: "a4", user: "Noah Brown", action: "hit their quarterly quota", target: "$100k", time: "1 hr ago", icon: Target },
 ];
 
 export type TaskDistribution = {
