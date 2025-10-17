@@ -11,7 +11,10 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarGroup
+  SidebarGroup,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem
 } from "@/components/ui/sidebar"
 import {
   Users,
@@ -24,13 +27,11 @@ import {
   HelpCircle,
   Settings,
   ChevronDown,
-  ChevronRight,
   Dot,
   Home
 } from "lucide-react"
 import Image from "next/image"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
 
 const menuItems = [
@@ -72,64 +73,56 @@ const helpAndSettingsItems = [
 function MenuItem({ item, isActive }: { item: {label: string, icon: React.ElementType, href?: string, subItems?: any[]}, isActive: boolean }) {
   const hasSubItems = item.subItems && item.subItems.length > 0;
   const pathname = usePathname();
-  const [isHovering, setIsHovering] = React.useState(false);
-
+  
   const isSubItemActive = hasSubItems && item.subItems!.some(sub => pathname.startsWith(sub.href!));
 
+  if (hasSubItems) {
+    return (
+      <Collapsible defaultOpen={true}>
+        <SidebarMenuItem>
+          <CollapsibleTrigger asChild>
+            <SidebarMenuButton isActive={isActive || isSubItemActive} className="justify-between">
+              <div className="flex items-center gap-2">
+                <item.icon size={18} />
+                <span>{item.label}</span>
+              </div>
+              <ChevronDown
+                size={16}
+                className={cn("transition-transform", "[data-state=open]:-rotate-180")}
+              />
+            </SidebarMenuButton>
+          </CollapsibleTrigger>
+        </SidebarMenuItem>
+        <CollapsibleContent>
+            <SidebarMenuSub>
+                {item.subItems!.map((subItem) => (
+                    <SidebarMenuSubItem key={subItem.label}>
+                        <Link href={subItem.href!}>
+                            <SidebarMenuSubButton isActive={pathname === subItem.href}>
+                                <Dot size={18} />
+                                <span>{subItem.label}</span>
+                            </SidebarMenuSubButton>
+                        </Link>
+                    </SidebarMenuSubItem>
+                ))}
+            </SidebarMenuSub>
+        </CollapsibleContent>
+      </Collapsible>
+    )
+  }
+
   const menuItemContent = (
-    <SidebarMenuButton isActive={isActive || isSubItemActive} className="justify-between">
+    <SidebarMenuButton isActive={isActive || isSubItemActive}>
       <div className="flex items-center gap-2">
         <item.icon size={18} />
         <span>{item.label}</span>
       </div>
-      {hasSubItems && (
-        <ChevronRight
-          size={16}
-          className={cn("transition-transform")}
-        />
-      )}
     </SidebarMenuButton>
   );
 
-  if (hasSubItems) {
-    return (
-      <Popover open={isHovering} onOpenChange={setIsHovering}>
-        <PopoverTrigger asChild>
-          <div onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
-            <SidebarMenuItem className="w-full">
-              {item.href ? <Link href={item.href}>{menuItemContent}</Link> : menuItemContent}
-            </SidebarMenuItem>
-          </div>
-        </PopoverTrigger>
-        <PopoverContent 
-          side="right" 
-          align="start" 
-          className="w-48 bg-sidebar text-sidebar-foreground border-sidebar-border p-2"
-          onMouseEnter={() => setIsHovering(true)} 
-          onMouseLeave={() => setIsHovering(false)}
-        >
-            <SidebarMenu className="gap-2">
-                {item.subItems!.map((subItem) => (
-                    <SidebarMenuItem key={subItem.label}>
-                        <Link href={subItem.href!} className="w-full">
-                            <SidebarMenuButton isActive={pathname === subItem.href}>
-                                <div className="flex items-center gap-2">
-                                    <Dot size={18} />
-                                    <span>{subItem.label}</span>
-                                </div>
-                            </SidebarMenuButton>
-                        </Link>
-                    </SidebarMenuItem>
-                ))}
-            </SidebarMenu>
-        </PopoverContent>
-      </Popover>
-    )
-  }
-
   return (
     <SidebarMenuItem>
-        {item.href ? <Link href={item.href}>{menuItemContent}</Link> : menuItemContent }
+        {item.href ? <Link href={item.href}>{menuItemContent}</Link> : <div className="cursor-not-allowed">{menuItemContent}</div>}
     </SidebarMenuItem>
   )
 }
