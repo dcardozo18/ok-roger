@@ -15,21 +15,31 @@ export const stats: Stat[] = [
   { title: "Total Projects", value: "350", change: "+1.2%", icon: Briefcase },
 ];
 
-export type Client = {
+export type User = {
   id: string;
   name: string;
   avatarUrl: string;
-  website: string;
-  creationDate: string;
   avatarFallback: string;
+  email: string;
+  role: "Admin" | "Editor" | "Viewer";
+  status: "Active" | "Inactive" | "Pending";
+  lastLogin: string;
+  creationDate: string;
 };
 
-export const clients: Client[] = [
-  { id: "1", name: "Alice Johnson", avatarUrl: "https://picsum.photos/seed/avatar1/40/40", website: "creative.inc", creationDate: "2023-01-15", avatarFallback: "AJ" },
-  { id: "2", name: "Bob Williams", avatarUrl: "https://picsum.photos/seed/avatar2/40/40", website: "techsolutions.com", creationDate: "2023-02-20", avatarFallback: "BW" },
-  { id: "3", name: "Charlie Brown", avatarUrl: "https://picsum.photos/seed/avatar3/40/40", website: "designhouse.co", creationDate: "2023-03-10", avatarFallback: "CB" },
-  { id: "4", name: "Diana Prince", avatarUrl: "https://picsum.photos/seed/avatar4/40/40", website: "webwonders.io", creationDate: "2023-04-05", avatarFallback: "DP" },
+export const users: User[] = [
+  { id: "1", name: "Alice Johnson", avatarUrl: "https://picsum.photos/seed/avatar1/40/40", avatarFallback: "AJ", email: "alice.j@creative.inc", role: "Admin", status: "Active", lastLogin: "2023-04-01 10:00 AM", creationDate: "2023-01-15" },
+  { id: "2", name: "Bob Williams", avatarUrl: "https://picsum.photos/seed/avatar2/40/40", avatarFallback: "BW", email: "bob.w@techsolutions.com", role: "Editor", status: "Active", lastLogin: "2023-04-01 11:30 AM", creationDate: "2023-02-20" },
+  { id: "3", name: "Charlie Brown", avatarUrl: "https://picsum.photos/seed/avatar3/40/40", avatarFallback: "CB", email: "charlie.b@designhouse.co", role: "Viewer", status: "Inactive", lastLogin: "2023-03-28 05:20 PM", creationDate: "2023-03-10" },
+  { id: "4", name: "Diana Prince", avatarUrl: "https://picsum.photos/seed/avatar4/40/40", avatarFallback: "DP", email: "diana.p@webwonders.io", role: "Editor", status: "Active", lastLogin: "2023-04-02 09:00 AM", creationDate: "2023-04-05" },
+  { id: "5", name: "Ethan Hunt", avatarUrl: "https://picsum.photos/seed/avatar5/40/40", avatarFallback: "EH", email: "ethan.h@mi6.gov", role: "Admin", status: "Pending", lastLogin: "2023-03-25 08:45 AM", creationDate: "2023-01-20" },
+  { id: "6", name: "Fiona Glenanne", avatarUrl: "https://picsum.photos/seed/avatar6/40/40", avatarFallback: "FG", email: "fiona.g@burnnotice.com", role: "Editor", status: "Active", lastLogin: "2023-04-01 12:00 PM", creationDate: "2023-02-15" },
+  { id: "7", name: "George Costanza", avatarUrl: "https://picsum.photos/seed/avatar7/40/40", avatarFallback: "GC", email: "george.c@vandelay.ind", role: "Viewer", status: "Inactive", lastLogin: "2023-03-20 03:30 PM", creationDate: "2023-03-01" },
+  { id: "8", name: "Harvey Specter", avatarUrl: "https://picsum.photos/seed/avatar8/40/40", avatarFallback: "HS", email: "harvey.s@pearsonhardman.com", role: "Admin", status: "Active", lastLogin: "2023-04-02 01:15 PM", creationDate: "2023-01-10" },
+  { id: "9", name: "Irene Adler", avatarUrl: "https://picsum.photos/seed/avatar9/40/40", avatarFallback: "IA", email: "irene.a@thewoman.org", role: "Editor", status: "Pending", lastLogin: "2023-03-18 07:50 AM", creationDate: "2023-03-18" },
+  { id: "10", name: "Jack Sparrow", avatarUrl: "https://picsum.photos/seed/avatar10/40/40", avatarFallback: "JS", email: "jack.s@pearl.ship", role: "Viewer", status: "Active", lastLogin: "2023-03-30 04:40 PM", creationDate: "2023-01-01" },
 ];
+
 
 export type Project = {
   id: string;

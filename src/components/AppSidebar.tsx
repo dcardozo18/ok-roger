@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Link from "next/link";
 import {
   Sidebar,
   SidebarContent,
@@ -31,7 +32,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { cn } from "@/lib/utils"
 
 const menuItems = [
-  { label: "Users", icon: Users },
+  { label: "Users", icon: Users, href: "/users" },
   { label: "Directory", icon: BookUser },
   { label: "Platforms", icon: Layers },
   { label: "Policy", icon: Shield },
@@ -46,24 +47,29 @@ const helpAndSettingsItems = [
     { label: "Settings", icon: Settings },
 ]
 
-function MenuItem({ item }: { item: any }) {
+function MenuItem({ item }: { item: {label: string, icon: React.ElementType, href?: string, subItems?: any[]} }) {
   const hasSubItems = item.subItems && item.subItems.length > 0;
+  const Comp = item.href ? Link : "div";
+
+  const menuItemContent = (
+    <SidebarMenuButton className="justify-between">
+      <div className="flex items-center gap-2">
+        <item.icon size={18} />
+        <span>{item.label}</span>
+      </div>
+      {hasSubItems && (
+        <ChevronDown
+          size={16}
+          className={cn("transition-transform")}
+        />
+      )}
+    </SidebarMenuButton>
+  );
 
   return (
     <Collapsible>
       <SidebarMenuItem className="border-b border-sidebar-border">
-        <SidebarMenuButton className="justify-between">
-          <div className="flex items-center gap-2">
-            <item.icon size={18} />
-            <span>{item.label}</span>
-          </div>
-          {hasSubItems && (
-            <ChevronDown
-              size={16}
-              className={cn("transition-transform")}
-            />
-          )}
-        </SidebarMenuButton>
+         {item.href ? <Link href={item.href}>{menuItemContent}</Link> : menuItemContent}
       </SidebarMenuItem>
     </Collapsible>
   )
@@ -73,12 +79,12 @@ export function AppSidebar() {
   return (
     <Sidebar variant="floating">
       <SidebarHeader className="p-4">
-        <div className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 text-white font-bold text-lg">
                 O
             </div>
             <span className="text-xl font-bold text-white">OK Roger</span>
-        </div>
+        </Link>
       </SidebarHeader>
 
       <SidebarSeparator />
