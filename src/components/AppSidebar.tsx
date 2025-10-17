@@ -10,9 +10,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarGroup,
-  SidebarMenuSub,
-  SidebarMenuSubItem
+  SidebarGroup
 } from "@/components/ui/sidebar"
 import {
   Users,
@@ -26,11 +24,13 @@ import {
   HelpCircle,
   Settings,
   ChevronDown,
+  ChevronRight,
   Dot,
   Home
 } from "lucide-react"
 import Image from "next/image"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
 
 const menuItems = [
@@ -60,15 +60,18 @@ const helpAndSettingsItems = [
 
 function MenuItem({ item, isActive }: { item: {label: string, icon: React.ElementType, href?: string, subItems?: any[]}, isActive: boolean }) {
   const hasSubItems = item.subItems && item.subItems.length > 0;
-  
+  const pathname = usePathname();
+
+  const isSubItemActive = hasSubItems && item.subItems!.some(sub => pathname === sub.href);
+
   const menuItemContent = (
-    <SidebarMenuButton isActive={isActive} className="justify-between">
+    <SidebarMenuButton isActive={isActive || isSubItemActive} className="justify-between">
       <div className="flex items-center gap-2">
         <item.icon size={18} />
         <span>{item.label}</span>
       </div>
       {hasSubItems && (
-        <ChevronDown
+        <ChevronRight
           size={16}
           className={cn("transition-transform")}
         />
@@ -76,28 +79,38 @@ function MenuItem({ item, isActive }: { item: {label: string, icon: React.Elemen
     </SidebarMenuButton>
   );
 
-  const mainLink = item.href ? <Link href={item.href}>{menuItemContent}</Link> : <CollapsibleTrigger className="w-full">{menuItemContent}</CollapsibleTrigger>
+  if (hasSubItems) {
+    return (
+      <Popover>
+        <PopoverTrigger asChild>
+          <SidebarMenuItem className="w-full">
+            {menuItemContent}
+          </SidebarMenuItem>
+        </PopoverTrigger>
+        <PopoverContent side="right" align="start" className="w-48 bg-sidebar text-sidebar-foreground border-sidebar-border p-2">
+            <SidebarMenu>
+                {item.subItems!.map((subItem) => (
+                    <SidebarMenuItem key={subItem.label}>
+                        <Link href={subItem.href!} className="w-full">
+                            <SidebarMenuButton isActive={pathname === subItem.href}>
+                                <div className="flex items-center gap-2">
+                                    <Dot size={18} />
+                                    <span>{subItem.label}</span>
+                                </div>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
+                ))}
+            </SidebarMenu>
+        </PopoverContent>
+      </Popover>
+    )
+  }
 
   return (
-    <Collapsible>
-      <SidebarMenuItem>
-         {hasSubItems ? <CollapsibleTrigger className="w-full">{menuItemContent}</CollapsibleTrigger> : (item.href ? <Link href={item.href}>{menuItemContent}</Link> : menuItemContent) }
-         {hasSubItems && (
-            <CollapsibleContent>
-              <SidebarMenuSub>
-                {item.subItems.map((subItem, index) => (
-                  <SidebarMenuSubItem key={index}>
-                    <Link href={subItem.href} className="flex items-center gap-2 text-sm text-sidebar-foreground/80 hover:text-sidebar-foreground">
-                      <Dot size={18} />
-                      <span>{subItem.label}</span>
-                    </Link>
-                  </SidebarMenuSubItem>
-                ))}
-              </SidebarMenuSub>
-            </CollapsibleContent>
-         )}
-      </SidebarMenuItem>
-    </Collapsible>
+    <SidebarMenuItem>
+        {item.href ? <Link href={item.href}>{menuItemContent}</Link> : menuItemContent }
+    </SidebarMenuItem>
   )
 }
 
