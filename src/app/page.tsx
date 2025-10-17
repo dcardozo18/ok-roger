@@ -3,9 +3,9 @@ import { SalesChart } from "@/components/dashboard/SalesChart";
 import { ActiveProjects } from "@/components/dashboard/ActiveProjects";
 import { TeamMembers } from "@/components/dashboard/TeamMembers";
 import { TaskDistributionChart } from "@/components/dashboard/TaskDistributionChart";
-import { TaskList } from "@/components/dashboard/TaskList";
+import { GroupEventsCalendar } from "@/components/dashboard/GroupEventsCalendar";
 import { ActivityStream } from "@/components/dashboard/ActivityStream";
-import { stats, monthlySales, activeProjects, teamMembers, tasks, activityStream, taskDistribution } from "@/lib/data";
+import { stats, monthlySales, activeProjects, teamMembers, groupEvents, activityStream, taskDistribution } from "@/lib/data";
 import { Header } from "@/components/dashboard/Header";
 import { AppSidebar } from "@/components/AppSidebar";
 import { SidebarInset } from "@/components/ui/sidebar";
@@ -34,7 +34,7 @@ export default function DashboardPage() {
                   </div>
                 </div>
                 <div className="grid grid-cols-1 gap-4 lg:col-span-3 lg:grid-cols-2">
-                  <TaskList tasks={tasks} />
+                  <GroupEventsCalendar events={groupEvents} />
                   <div className="flex flex-col gap-4">
                     <TeamMembers members={teamMembers} />
                     <TaskDistributionChart data={taskDistribution} />
