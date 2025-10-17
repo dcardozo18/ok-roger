@@ -15,12 +15,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
 
 const settingsFormSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Please enter a valid email"),
   bio: z.string().max(160, "Bio cannot be longer than 160 characters.").optional(),
   currency: z.string().optional(),
+  autoInviteUsers: z.boolean().optional(),
 });
 
 type SettingsFormValues = z.infer<typeof settingsFormSchema>;
@@ -34,6 +36,7 @@ export default function SettingsPage() {
       email: "lucas.ethan@ok-roger.com",
       bio: "Lead Developer at OK Roger.",
       currency: "USD",
+      autoInviteUsers: true,
     },
   });
 
@@ -105,6 +108,31 @@ export default function SettingsPage() {
                             You can @mention other users and organizations.
                           </FormDescription>
                           <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <Separator />
+                     <div>
+                      <h3 className="text-lg font-medium">User Settings</h3>
+                      <p className="text-sm text-muted-foreground">Manage user invitation settings.</p>
+                    </div>
+                    <FormField
+                      control={form.control}
+                      name="autoInviteUsers"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                          <div className="space-y-0.5">
+                            <FormLabel>Auto invite users?</FormLabel>
+                            <FormDescription>
+                              Automatically send an invitation email when a new user is created.
+                            </FormDescription>
+                          </div>
+                          <FormControl>
+                            <Switch
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          </FormControl>
                         </FormItem>
                       )}
                     />
