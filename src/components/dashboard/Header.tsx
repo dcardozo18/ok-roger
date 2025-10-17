@@ -1,7 +1,7 @@
 
 "use client"
 import Link from "next/link"
-import Image from "next/image"
+import { usePathname } from "next/navigation"
 import {
   Bell,
   Mail,
@@ -18,17 +18,15 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
 
+// Helper function to capitalize the first letter of a string
+const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
 export function Header() {
+  const pathname = usePathname();
+  const pathParts = pathname.split('/').filter(part => part);
+
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6 mt-4 mb-4">
       <SidebarTrigger className="sm:hidden" />
@@ -36,13 +34,28 @@ export function Header() {
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link href="#">Dashboard</Link>
+              <Link href="/">Dashboard</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Overview</BreadcrumbPage>
-          </BreadcrumbItem>
+          {pathParts.length > 0 && pathParts[0] !== '' && <BreadcrumbSeparator />}
+          {pathParts.map((part, index) => {
+            const href = "/" + pathParts.slice(0, index + 1).join('/');
+            const isLast = index === pathParts.length - 1;
+            return (
+              <React.Fragment key={href}>
+                <BreadcrumbItem>
+                  {isLast ? (
+                    <BreadcrumbPage>{capitalize(part.replace(/-/g, ' '))}</BreadcrumbPage>
+                  ) : (
+                    <BreadcrumbLink asChild>
+                      <Link href={href}>{capitalize(part.replace(/-/g, ' '))}</Link>
+                    </BreadcrumbLink>
+                  )}
+                </BreadcrumbItem>
+                {!isLast && <BreadcrumbSeparator />}
+              </React.Fragment>
+            )
+          })}
         </BreadcrumbList>
       </Breadcrumb>
       <div className="relative ml-auto flex-1 md:grow-0">
