@@ -150,3 +150,22 @@ export const policyRules: Rule[] = [
   { id: "R004", name: "Last Minute Booking", service: "All", triggers: ["< 48 hours"], appliesTo: "All Users" },
   { id: "R005", name: "High Cost Travel", service: "All", triggers: ["Total > $5000"], appliesTo: "All Users" },
 ];
+
+export type Approver = {
+  id: string;
+  name: string;
+  avatarUrl: string;
+  avatarFallback: string;
+  role: string;
+  pendingApprovals: number;
+  avgApprovalTime: string;
+};
+
+export const approvers: Approver[] = [
+    { id: "1", name: "Samantha Carter", avatarUrl: "https://picsum.photos/seed/approver1/40/40", avatarFallback: "SC", role: "VP of Engineering", pendingApprovals: 5, avgApprovalTime: "2h" },
+    { id: "2", name: "John O'Neill", avatarUrl: "https://picsum.photos/seed/approver2/40/40", avatarFallback: "JO", role: "Director of Finance", pendingApprovals: 3, avgApprovalTime: "4h" },
+    { id: "3", name: "Daniel Jackson", avatarUrl: "https://picsum.photos/seed/approver3/40/40", avatarFallback: "DJ", role: "Lead Archaeologist", pendingApprovals: 8, avgApprovalTime: "1d" },
+    { id: "4", name: "Teal'c", avatarUrl: "https://picsum.photos/seed/approver4/40/40", avatarFallback: "T", role: "First Prime", pendingApprovals: 2, avgApprovalTime: "30m" },
+    { id: "5", name: "George Hammond", avatarUrl: "https://picsum.photos/seed/approver5/40/40", avatarFallback: "GH", role: "General, SGC", pendingApprovals: 1, avgApprovalTime: "1h" },
+    { id: "6", name: "Janet Fraiser", avatarUrl: "https://picsum.photos/seed/approver6/40/40", avatarFallback: "JF", role: "Chief Medical Officer", pendingApprovals: 4, avgApprovalTime: "3h" },
+];
