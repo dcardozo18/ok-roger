@@ -33,6 +33,7 @@ const profileFormSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
   email: z.string().email("Please enter a valid email"),
+  phone: z.string().optional(),
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
@@ -45,6 +46,7 @@ export default function AccountProfilePage() {
       firstName: "Lucas",
       lastName: "Ethan",
       email: "lucas.ethan@example.com",
+      phone: "+1 (555) 123-4567",
     },
   });
 
@@ -120,6 +122,19 @@ export default function AccountProfilePage() {
                           <FormLabel>Email</FormLabel>
                           <FormControl>
                             <Input type="email" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="phone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Phone</FormLabel>
+                          <FormControl>
+                            <Input type="tel" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
