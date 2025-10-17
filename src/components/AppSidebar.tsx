@@ -61,6 +61,7 @@ const helpAndSettingsItems = [
 function MenuItem({ item, isActive }: { item: {label: string, icon: React.ElementType, href?: string, subItems?: any[]}, isActive: boolean }) {
   const hasSubItems = item.subItems && item.subItems.length > 0;
   const pathname = usePathname();
+  const [isHovering, setIsHovering] = React.useState(false);
 
   const isSubItemActive = hasSubItems && item.subItems!.some(sub => pathname.startsWith(sub.href!));
 
@@ -81,13 +82,21 @@ function MenuItem({ item, isActive }: { item: {label: string, icon: React.Elemen
 
   if (hasSubItems) {
     return (
-      <Popover>
+      <Popover open={isHovering} onOpenChange={setIsHovering}>
         <PopoverTrigger asChild>
-          <SidebarMenuItem className="w-full">
-            {menuItemContent}
-          </SidebarMenuItem>
+          <div onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
+            <SidebarMenuItem className="w-full">
+              {item.href ? <Link href={item.href}>{menuItemContent}</Link> : menuItemContent}
+            </SidebarMenuItem>
+          </div>
         </PopoverTrigger>
-        <PopoverContent side="right" align="start" className="w-48 bg-sidebar text-sidebar-foreground border-sidebar-border p-2">
+        <PopoverContent 
+          side="right" 
+          align="start" 
+          className="w-48 bg-sidebar text-sidebar-foreground border-sidebar-border p-2"
+          onMouseEnter={() => setIsHovering(true)} 
+          onMouseLeave={() => setIsHovering(false)}
+        >
             <SidebarMenu>
                 {item.subItems!.map((subItem) => (
                     <SidebarMenuItem key={subItem.label}>
