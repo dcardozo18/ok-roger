@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/sidebar"
 import {
   Users,
-  BookUser,
   Layers,
   Shield,
   BarChart2,
@@ -36,7 +35,6 @@ import { cn } from "@/lib/utils"
 const menuItems = [
   { label: "Dashboard", icon: Home, href: "/" },
   { label: "Users", icon: Users, href: "/users" },
-  { label: "Directory", icon: BookUser },
   { label: "Platforms", icon: Layers, href: "/platforms" },
   { label: "Policy", icon: Shield },
   { label: "Reports", icon: BarChart2 },
@@ -97,7 +95,7 @@ function MenuItem({ item, isActive }: { item: {label: string, icon: React.Elemen
           onMouseEnter={() => setIsHovering(true)} 
           onMouseLeave={() => setIsHovering(false)}
         >
-            <SidebarMenu>
+            <SidebarMenu className="gap-2">
                 {item.subItems!.map((subItem) => (
                     <SidebarMenuItem key={subItem.label}>
                         <Link href={subItem.href!} className="w-full">
@@ -171,7 +169,7 @@ export function AppSidebar() {
             </div>
             
             <SidebarGroup>
-                <SidebarMenu>
+                <SidebarMenu className="gap-2">
                 {menuItems.map((item) => (
                     <MenuItem key={item.label} item={item} isActive={pathname === item.href} />
                 ))}
@@ -180,7 +178,7 @@ export function AppSidebar() {
           </div>
           
           <SidebarGroup>
-            <SidebarMenu>
+            <SidebarMenu className="gap-2">
                 {helpAndSettingsItems.map((item) => (
                     <MenuItem key={item.label} item={item} isActive={pathname === item.href} />
                 ))}
