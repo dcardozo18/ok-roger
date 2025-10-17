@@ -1,4 +1,5 @@
 
+
 import Image from "next/image";
 import type { Member } from "@/lib/data";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";

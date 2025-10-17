@@ -1,4 +1,5 @@
 
+
 import { AppSidebar } from "@/components/AppSidebar";
 import { Header } from "@/components/dashboard/Header";
 import { SalesChart } from "@/components/dashboard/SalesChart";
@@ -25,7 +26,7 @@ export default function ReportsPage() {
                 <div className="lg:col-span-4">
                     <SalesChart data={monthlySales} />
                 </div>
-                <div className="lg:col-span-3 grid grid-cols-1 gap-4">
+                <div className="lg:col-span-3">
                     <TaskDistributionChart data={taskDistribution} />
                 </div>
             </div>

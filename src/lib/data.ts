@@ -21,10 +21,6 @@ export const reportStats: Stat[] = [
     { title: "Booking Changes", value: "350", change: "+5.1%", icon: CalendarCog },
     { title: "Cancellations", value: "82", change: "-3.4%", icon: CalendarX },
     { title: "Transactions", value: "2.8K", change: "+21.9%", icon: ArrowRightLeft },
-    { title: "Spend Managed", value: "$1.2M", change: "+8.3%", icon: CircleDollarSign },
-    { title: "Active Users", value: "5.4K", change: "+2.1%", icon: Users },
-    { title: "Trip Reminders", value: "980", change: "+10.0%", icon: Bell },
-    { title: "Jobs Completed", value: "1.1K", change: "+12.7%", icon: Check },
 ];
 
 export type User = {
