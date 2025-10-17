@@ -11,8 +11,6 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarGroup,
-  SidebarFooter,
-  SidebarSeparator,
 } from "@/components/ui/sidebar"
 import {
   Users,
@@ -41,7 +39,7 @@ const menuItems = [
   { label: "Policy", icon: Shield },
   { label: "Reports", icon: BarChart2 },
   { label: "Group Events", icon: CalendarDays },
-  { label: "Map", icon: Map },
+  { label: "Map", icon: Map, href: "/map" },
   { label: "Billing", icon: CreditCard },
 ];
 
@@ -104,8 +102,6 @@ export function AppSidebar() {
             <span className="text-xl font-bold text-white">OK Roger</span>
         </Link>
       </SidebarHeader>
-
-      <SidebarSeparator />
       
       <SidebarContent className="p-2 flex flex-col justify-between">
           <div>
