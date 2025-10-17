@@ -110,7 +110,11 @@ body {
 }
 
 @layer utilities {
-  .calendar-grid {
-    grid-template-rows: auto 1fr 1fr 1fr 1fr 1fr 1fr;
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      grid-template-rows: auto repeat(5, minmax(0, 1fr));
+      height: 100%;
+      width: 100%;
+    }
   }
-}
