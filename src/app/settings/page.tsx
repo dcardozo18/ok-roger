@@ -59,31 +59,6 @@ export default function SettingsPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="grid gap-6">
-                     <div>
-                      <h3 className="text-lg font-medium">User Settings</h3>
-                      <p className="text-sm text-muted-foreground">Manage user invitation settings.</p>
-                    </div>
-                    <FormField
-                      control={form.control}
-                      name="autoInviteUsers"
-                      render={({ field }) => (
-                        <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-                          <div className="space-y-0.5">
-                            <FormLabel>Auto invite users?</FormLabel>
-                            <FormDescription>
-                              Automatically send an invitation email when a new user is created.
-                            </FormDescription>
-                          </div>
-                          <FormControl>
-                            <Switch
-                              checked={field.value}
-                              onCheckedChange={field.onChange}
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
-                    />
-                    <Separator />
                     <div>
                       <h3 className="text-lg font-medium">Regional Settings</h3>
                       <p className="text-sm text-muted-foreground">Set your preferred currency.</p>
@@ -108,6 +83,31 @@ export default function SettingsPage() {
                             </SelectContent>
                           </Select>
                           <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <Separator />
+                     <div>
+                      <h3 className="text-lg font-medium">User Settings</h3>
+                      <p className="text-sm text-muted-foreground">Manage user invitation settings.</p>
+                    </div>
+                    <FormField
+                      control={form.control}
+                      name="autoInviteUsers"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                          <div className="space-y-0.5">
+                            <FormLabel>Auto invite users?</FormLabel>
+                            <FormDescription>
+                              Automatically send an invitation email when a new user is created.
+                            </FormDescription>
+                          </div>
+                          <FormControl>
+                            <Switch
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          </FormControl>
                         </FormItem>
                       )}
                     />
