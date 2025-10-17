@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
 import {
   Sidebar,
   SidebarContent,
@@ -49,12 +50,11 @@ const helpAndSettingsItems = [
     { label: "Settings", icon: Settings },
 ]
 
-function MenuItem({ item }: { item: {label: string, icon: React.ElementType, href?: string, subItems?: any[]} }) {
+function MenuItem({ item, isActive }: { item: {label: string, icon: React.ElementType, href?: string, subItems?: any[]}, isActive: boolean }) {
   const hasSubItems = item.subItems && item.subItems.length > 0;
-  const Comp = item.href ? Link : "div";
-
+  
   const menuItemContent = (
-    <SidebarMenuButton className="justify-between">
+    <SidebarMenuButton isActive={isActive} className="justify-between">
       <div className="flex items-center gap-2">
         <item.icon size={18} />
         <span>{item.label}</span>
@@ -71,13 +71,29 @@ function MenuItem({ item }: { item: {label: string, icon: React.ElementType, hre
   return (
     <Collapsible>
       <SidebarMenuItem>
-         {item.href ? <Link href={item.href}>{menuItemContent}</Link> : menuItemContent}
+         {item.href ? <Link href={item.href}>{menuItemContent}</Link> : <CollapsibleTrigger className="w-full">{menuItemContent}</CollapsibleTrigger>}
+         {hasSubItems && (
+            <CollapsibleContent>
+              <SidebarMenuSub>
+                {item.subItems.map((subItem, index) => (
+                  <SidebarMenuSubItem key={index}>
+                    <Link href={subItem.href} className="flex items-center gap-2 text-sm text-sidebar-foreground/80 hover:text-sidebar-foreground">
+                      <Dot size={18} />
+                      <span>{subItem.label}</span>
+                    </Link>
+                  </SidebarMenuSubItem>
+                ))}
+              </SidebarMenuSub>
+            </CollapsibleContent>
+         )}
       </SidebarMenuItem>
     </Collapsible>
   )
 }
 
 export function AppSidebar() {
+  const pathname = usePathname();
+
   return (
     <Sidebar variant="floating">
       <SidebarHeader className="p-4">
@@ -127,7 +143,7 @@ export function AppSidebar() {
             <SidebarGroup>
                 <SidebarMenu>
                 {menuItems.map((item) => (
-                    <MenuItem key={item.label} item={item} />
+                    <MenuItem key={item.label} item={item} isActive={pathname === item.href} />
                 ))}
                 </SidebarMenu>
             </SidebarGroup>
@@ -136,7 +152,7 @@ export function AppSidebar() {
           <SidebarGroup>
             <SidebarMenu>
                 {helpAndSettingsItems.map((item) => (
-                    <MenuItem key={item.label} item={item} />
+                    <MenuItem key={item.label} item={item} isActive={pathname === item.href} />
                 ))}
             </SidebarMenu>
           </SidebarGroup>
