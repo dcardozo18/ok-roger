@@ -15,6 +15,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
   ChartLegend,
+  ChartLegendContent,
 } from "@/components/ui/chart";
 import type { TaskDistribution } from "@/lib/data";
 
@@ -69,7 +70,7 @@ export function TaskDistributionChart({ data }: TaskDistributionChartProps) {
               strokeWidth={5}
             />
             <ChartLegend
-              content={<ChartLegend.Content nameKey="department" />}
+              content={<ChartLegendContent nameKey="department" />}
               className="-mt-4 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center"
             />
           </PieChart>
