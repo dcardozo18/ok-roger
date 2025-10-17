@@ -6,6 +6,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import type { GroupEvent } from "@/lib/data"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Button } from "@/components/ui/button"
+import { eachDayOfInterval, isSameDay } from "date-fns"
 
 interface GroupEventsCalendarProps {
   events: GroupEvent[];
@@ -20,47 +23,70 @@ const tagColors: Record<GroupEvent["tag"], string> = {
 export function GroupEventsCalendar({ events }: GroupEventsCalendarProps) {
   const [date, setDate] = React.useState<Date | undefined>(new Date())
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0); 
-  
-  const upcomingEvents = events
-    .filter(event => new Date(event.date) >= today)
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-    .slice(0, 3);
+  const eventDates = events.map(event => new Date(event.date));
+
+  const EventDay = (day: Date) => {
+    const eventsOnDay = events.filter(event => isSameDay(new Date(event.date), day));
+    if (eventsOnDay.length === 0) {
+      return (
+        <div className="relative flex h-full w-full items-center justify-center">
+          {day.getDate()}
+        </div>
+      );
+    }
+    return (
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="ghost" size="sm" className="w-full h-full p-0 font-normal">
+            <div className="relative flex h-full w-full items-center justify-center">
+              {day.getDate()}
+              <div className="absolute bottom-1 flex gap-0.5">
+                {eventsOnDay.map(event => (
+                  <div key={event.id} className={cn("h-1 w-1 rounded-full", tagColors[event.tag].split(' ')[0])} />
+                ))}
+              </div>
+            </div>
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-4 space-y-2">
+          <h4 className="font-semibold">{day.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}</h4>
+          <div className="space-y-2">
+            {eventsOnDay.map(event => (
+               <div key={event.id} className="flex items-start gap-3">
+                <div className="flex-1">
+                  <p className="font-medium">{event.title}</p>
+                  <p className="text-sm text-muted-foreground">{event.time}</p>
+                </div>
+                <Badge variant="outline" className={cn("border-transparent", tagColors[event.tag])}>{event.tag}</Badge>
+              </div>
+            ))}
+          </div>
+        </PopoverContent>
+      </Popover>
+    );
+  };
+
 
   return (
-    <Card>
+    <Card className="h-full flex flex-col">
       <CardHeader>
         <CardTitle>Group Events</CardTitle>
         <CardDescription>An overview of upcoming group events.</CardDescription>
       </CardHeader>
-      <CardContent className="flex flex-col gap-6">
-        <div className="flex justify-center">
-          <Calendar
-            mode="single"
-            selected={date}
-            onSelect={setDate}
-            className="rounded-md border"
-          />
-        </div>
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold">Upcoming</h3>
-          {upcomingEvents.length > 0 ? (
-            upcomingEvents.map((event) => (
-              <div key={event.id} className="flex items-start gap-3">
-                <div className="flex-1">
-                  <p className="font-medium">{event.title}</p>
-                  <p className="text-sm text-muted-foreground">
-                    {new Date(event.date).toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })} at {event.time}
-                  </p>
-                </div>
-                <Badge variant="outline" className={cn("border-transparent", tagColors[event.tag])}>{event.tag}</Badge>
-              </div>
-            ))
-          ) : (
-            <p className="text-sm text-muted-foreground">No upcoming events.</p>
-          )}
-        </div>
+      <CardContent className="flex-1 flex justify-center items-center">
+        <Calendar
+          mode="single"
+          selected={date}
+          onSelect={setDate}
+          modifiers={{ hasEvent: eventDates }}
+          modifiersClassNames={{
+            hasEvent: "has-event",
+          }}
+          components={{
+            Day: ({ date }) => EventDay(date),
+          }}
+          className="w-full p-0 [&_td]:p-0"
+        />
       </CardContent>
     </Card>
   )

@@ -108,3 +108,12 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .has-event {
+    @apply font-bold;
+  }
+  .has-event > div {
+    @apply bg-primary/10;
+  }
+}
