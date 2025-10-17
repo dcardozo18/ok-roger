@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -37,7 +38,7 @@ const menuItems = [
   { label: "Users", icon: Users, href: "/users" },
   { label: "Platforms", icon: Layers, href: "/platforms" },
   { label: "Policy", icon: Shield },
-  { label: "Reports", icon: BarChart2 },
+  { label: "Reports", icon: BarChart2, href: "/reports" },
   { label: "Group Events", icon: CalendarDays },
   { label: "Map", icon: Map, href: "/map" },
   { 

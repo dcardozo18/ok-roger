@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -27,20 +28,20 @@ const chartConfig = {
   tasks: {
     label: "Tasks",
   },
-  design: {
-    label: "Design",
+  calls: {
+    label: "Calls",
     color: "hsl(var(--chart-1))",
   },
-  development: {
-    label: "Development",
+  emails: {
+    label: "Emails",
     color: "hsl(var(--chart-2))",
   },
-  marketing: {
-    label: "Marketing",
+  meetings: {
+    label: "Meetings",
     color: "hsl(var(--chart-3))",
   },
-  qa: {
-    label: "QA",
+  deals: {
+    label: "Deals Closed",
     color: "hsl(var(--chart-4))",
   },
 } satisfies ChartConfig;
@@ -49,8 +50,8 @@ export function TaskDistributionChart({ data }: TaskDistributionChartProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Task Activity</CardTitle>
-        <CardDescription>Distribution of tasks across departments.</CardDescription>
+        <CardTitle>Sales Activity</CardTitle>
+        <CardDescription>Distribution of sales activities.</CardDescription>
       </CardHeader>
       <CardContent className="flex justify-center">
         <ChartContainer

@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import type { Member } from "@/lib/data";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,8 +12,8 @@ export function TeamMembers({ members }: TeamMembersProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Team Members</CardTitle>
-        <CardDescription>The people driving your projects forward.</CardDescription>
+        <CardTitle>Top Performers</CardTitle>
+        <CardDescription>Your team's most valuable players.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         {members.map((member) => (

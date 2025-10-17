@@ -1,3 +1,4 @@
+
 import { DollarSign, ClipboardList, CheckCircle, Briefcase, User, Calendar, MessageSquare, PlusCircle, TrendingUp, Target } from 'lucide-react';
 import type { Icon as LucideIcon } from 'lucide-react';
 
@@ -63,9 +64,9 @@ export type Member = {
 };
 
 export const teamMembers: Member[] = [
-  { id: "m1", name: "Eva Green", avatarUrl: "https://picsum.photos/seed/team1/40/40", role: "UI/UX Designer", avatarFallback: "EG" },
-  { id: "m2", name: "Frank Miller", avatarUrl: "https://picsum.photos/seed/team2/40/40", role: "Frontend Developer", avatarFallback: "FM" },
-  { id: "m3", name: "Grace Lee", avatarUrl: "https://picsum.photos/seed/team3/40/40", role: "Backend Developer", avatarFallback: "GL" },
+  { id: "m1", name: "Eva Green", avatarUrl: "https://picsum.photos/seed/team1/40/40", role: "Top Performer", avatarFallback: "EG" },
+  { id: "m2", name: "Frank Miller", avatarUrl: "https://picsum.photos/seed/team2/40/40", role: "Rising Star", avatarFallback: "FM" },
+  { id: "m3", name: "Grace Lee", avatarUrl: "https://picsum.photos/seed/team3/40/40", role: "Consistent Achiever", avatarFallback: "GL" },
 ];
 
 export type TaskStatus = "In Progress" | "Completed" | "Canceled";
@@ -107,10 +108,10 @@ export type TaskDistribution = {
 };
 
 export const taskDistribution: TaskDistribution[] = [
-  { department: "Design", tasks: 120, fill: "var(--color-design)" },
-  { department: "Development", tasks: 250, fill: "var(--color-development)" },
-  { department: "Marketing", tasks: 80, fill: "var(--color-marketing)" },
-  { department: "QA", tasks: 50, fill: "var(--color-qa)" },
+  { department: "Calls", tasks: 120, fill: "var(--color-design)" },
+  { department: "Emails", tasks: 250, fill: "var(--color-development)" },
+  { department: "Meetings", tasks: 80, fill: "var(--color-marketing)" },
+  { department: "Deals Closed", tasks: 50, fill: "var(--color-qa)" },
 ];
 
 export type SalesData = {
