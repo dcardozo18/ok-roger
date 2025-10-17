@@ -18,6 +18,10 @@ export const stats: Stat[] = [
 ];
 
 export const reportStats: Stat[] = [
+    { title: "New Bookings", value: "1.2K", change: "+15%", icon: CalendarPlus },
+    { title: "Booking Changes", value: "350", change: "+5%", icon: CalendarCog },
+    { title: "Cancellations", value: "82", change: "-3%", icon: CalendarX },
+    { title: "Transactions", value: "2.8K", change: "+20%", icon: ArrowRightLeft },
     { title: "Spend Managed", value: "$450K", change: "+10%", icon: CircleDollarSign },
     { title: "Employee Time Saved", value: "500h", change: "+8%", icon: Clock },
     { title: "Check Ins", value: "1.5K", change: "+25%", icon: ShieldCheck },
