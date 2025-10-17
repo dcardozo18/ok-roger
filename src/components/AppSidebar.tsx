@@ -37,7 +37,7 @@ const menuItems = [
   { label: "Dashboard", icon: Home, href: "/" },
   { label: "Users", icon: Users, href: "/users" },
   { label: "Directory", icon: BookUser },
-  { label: "Platforms", icon: Layers },
+  { label: "Platforms", icon: Layers, href: "/platforms" },
   { label: "Policy", icon: Shield },
   { label: "Reports", icon: BarChart2 },
   { label: "Group Events", icon: CalendarDays },
